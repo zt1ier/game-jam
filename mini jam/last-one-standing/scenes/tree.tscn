@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkryowpgvopn5"]
+
+[ext_resource type="Script" uid="uid://bh0xkhas45mdd" path="res://scripts/object.gd" id="1_avsvi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ict6q"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_avsvi"]
+radius = 8.0
+
+[node name="Tree" type="StaticBody2D"]
+script = ExtResource("1_avsvi")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 10.0
+offset_top = -19.0
+offset_right = 50.0
+offset_bottom = 1.0
+rotation = 1.57079
+text = "<<-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 10.0
+offset_top = -25.0
+offset_right = 50.0
+offset_bottom = -5.0
+rotation = 1.57079
+text = "<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_ict6q")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_avsvi")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

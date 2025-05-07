@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cajyl0uw1n15y"]
+
+[ext_resource type="Script" uid="uid://c4borvch3yrn7" path="res://scripts/bullet.gd" id="1_mkf8s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1aey"]
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_mkf8s")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_h1aey")
+
+[node name="OperationLabel" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -10.0
+offset_right = 21.0
+offset_bottom = 10.0
+pivot_offset = Vector2(20, 10)
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
