@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgygyep30crf1"]
+
+[ext_resource type="Script" uid="uid://cggn5t4k8yh04" path="res://scripts/main.gd" id="1_ig7tw"]
+[ext_resource type="Shader" uid="uid://b6wv028waf6ly" path="res://scripts/shaders/crt.gdshader" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dq4pavnmp2c7s" path="res://assets/cursor.png" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cb8gaqkqxk0jc" path="res://scenes/player.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://knhudknljb6c" path="res://scenes/number.tscn" id="5_lquwl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
+shader = ExtResource("2_0xm2m")
+shader_parameter/resolution = Vector2(576, 324)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/abberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+border_size = null
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 576.0
+offset_bottom = 328.0
+color = Color(0.027451, 0.027451, 0.027451, 1)
+
+[node name="CRT" type="CanvasLayer" parent="."]
+
+[node name="Shader" type="ColorRect" parent="CRT"]
+material = SubResource("ShaderMaterial_h2yge")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Numbers" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Cursor" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(288, 164)
+texture = ExtResource("3_h2yge")
+
+[node name="PointsLabel" type="Label" parent="."]
+z_index = 1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 592.0
+offset_bottom = 36.0
+text = "Points"
+vertical_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(221, 211)
+
+[node name="Enemy" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(158, 118)

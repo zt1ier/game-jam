@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjhl4f6bcg11"]
+
+[ext_resource type="Script" uid="uid://gf63h1bg5xrr" path="res://scripts/main_menu.gd" id="1_2o76q"]
+[ext_resource type="Shader" uid="uid://b6wv028waf6ly" path="res://scripts/shaders/crt.gdshader" id="1_xqga4"]
+[ext_resource type="AudioStream" uid="uid://dy71ugr3736b0" path="res://assets/sfx/blipSelect.wav" id="4_6bivr"]
+[ext_resource type="Texture2D" uid="uid://dq4pavnmp2c7s" path="res://assets/cursor.png" id="4_imvie"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ovrgc"]
+shader = ExtResource("1_xqga4")
+shader_parameter/resolution = Vector2(576, 324)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/abberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2o76q")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CRT" type="CanvasLayer" parent="."]
+
+[node name="Shader" type="ColorRect" parent="CRT"]
+material = SubResource("ShaderMaterial_ovrgc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 104.0
+offset_right = 577.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 30
+text = "La5t one St4ndin6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_top = 152.0
+offset_right = 576.0
+offset_bottom = 180.0
+focus_mode = 0
+text = "Play"
+flat = true
+
+[node name="Info" type="Button" parent="."]
+layout_mode = 0
+offset_top = 176.0
+offset_right = 576.0
+offset_bottom = 204.0
+focus_mode = 0
+text = "Info"
+flat = true
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 576.0
+offset_bottom = 228.0
+focus_mode = 0
+text = "exit"
+flat = true
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6bivr")
+pitch_scale = 1.5
+
+[node name="Cursor" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(384, 246)
+texture = ExtResource("4_imvie")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Info" to="." method="_on_info_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
