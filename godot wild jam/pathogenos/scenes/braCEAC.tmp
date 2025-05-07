@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://q1odj77x3ge4"]
+
+[ext_resource type="Texture2D" uid="uid://bqywu0sdvqqsr" path="res://whitecircle-removebg-preview.png" id="1_odsx0"]
+[ext_resource type="Script" path="res://scripts/brain.gd" id="1_uo0wg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k02b5"]
+radius = 173.104
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pat8t"]
+radius = 483.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_suekm"]
+radius = 178.025
+
+[node name="Brain" type="Node2D"]
+script = ExtResource("1_uo0wg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.999998, 0.371668, 0.716882, 1)
+scale = Vector2(1.47009, 1.47009)
+texture = ExtResource("1_odsx0")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_k02b5")
+
+[node name="WBCSpawnMarker" type="Marker2D" parent="."]
+position = Vector2(-216, 192)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="SpeedBoost" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpeedBoost"]
+shape = SubResource("CircleShape2D_pat8t")
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_suekm")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -39.0
+offset_top = -19.0
+offset_right = 41.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 50
+text = "100"
+horizontal_alignment = 1
+
+[node name="BrainLabel" type="Label" parent="."]
+offset_left = -39.0
+offset_top = -35.0
+offset_right = 41.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 15
+text = "Brain"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="body_entered" from="SpeedBoost" to="." method="_on_speed_boost_body_entered"]
+[connection signal="body_exited" from="SpeedBoost" to="." method="_on_speed_boost_body_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc7wxea55v86d"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_2sysg"]
+[ext_resource type="PackedScene" uid="uid://cuid5gf7sa7he" path="res://scenes/player.tscn" id="1_ilm1x"]
+[ext_resource type="PackedScene" uid="uid://dh1xnsrc0i6dk" path="res://scenes/red_blood_cell.tscn" id="3_576kj"]
+
+[node name="Main" type="Node2D"]
+rotation = -0.00256826
+script = ExtResource("1_2sysg")
+
+[node name="Player" parent="." instance=ExtResource("1_ilm1x")]
+position = Vector2(575.166, 325.478)
+
+[node name="RedBloodCell" parent="." instance=ExtResource("3_576kj")]
+position = Vector2(315.864, 442.813)
+
+[node name="RedBloodCell2" parent="." instance=ExtResource("3_576kj")]
+position = Vector2(531.953, 408.368)
+
+[node name="RedBloodCell3" parent="." instance=ExtResource("3_576kj")]
+position = Vector2(398.195, 314.024)
+
+[node name="RedBloodCell4" parent="." instance=ExtResource("3_576kj")]
+position = Vector2(440.637, 531.133)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(-8.0385, 14.9794, 0.338331, 647.003, 1144.32, 653.941, 1144.32, 653.941, 1152, 1.95864, 55.9921, 3.14381, 55.9921, 3.14381, -49.8637, -53.1282, -49.7386, 676.875, 1216.28, 671.126, 1216.28, 671.126, 1171.2, -76.9923, -47.8586, -55.1231, 54.9921, 3.14124)
+
+[node name="Polygon2D" type="Polygon2D" parent="Walls/CollisionPolygon2D"]
+color = Color(0, 0, 0, 1)

@@ -1,0 +1,507 @@
+[gd_scene load_steps=14 format=3 uid="uid://bc7wxea55v86d"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_2sysg"]
+[ext_resource type="PackedScene" uid="uid://cuid5gf7sa7he" path="res://scenes/player.tscn" id="1_ilm1x"]
+[ext_resource type="PackedScene" uid="uid://q1odj77x3ge4" path="res://scenes/brain.tscn" id="2_ttgus"]
+[ext_resource type="PackedScene" uid="uid://dh1xnsrc0i6dk" path="res://scenes/red_blood_cell.tscn" id="3_576kj"]
+[ext_resource type="PackedScene" uid="uid://c615hpnmavyjc" path="res://scenes/white_blood_cell.tscn" id="4_m3ntk"]
+[ext_resource type="Texture2D" uid="uid://bkacwtd8grvhx" path="res://purplecircle-removebg-preview.png" id="4_y7ekx"]
+[ext_resource type="PackedScene" uid="uid://cr0684aj8mbs1" path="res://scenes/heart.tscn" id="6_8lyoc"]
+[ext_resource type="AudioStream" uid="uid://couh517pdskoy" path="res://jungle-ish-beat-for-video-games-314073.mp3" id="7_gamto"]
+
+[sub_resource type="Environment" id="Environment_pgvsc"]
+background_mode = 3
+tonemap_mode = 2
+tonemap_exposure = 5.0
+tonemap_white = 16.0
+glow_enabled = true
+glow_intensity = 2.0
+glow_bloom = 0.2
+glow_hdr_threshold = 3.0
+glow_hdr_scale = 4.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m8lu0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0yaa6"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_7vbs5"]
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0772059, 338.264), 0.0, 0.0, 0, 0, Vector2(0.150735, -183.396), 0.0, 0.0, 0, 0, Vector2(0.283088, 66.566), 0.0, 0.0, 0, 0, Vector2(0.363971, 305.66), 0.0, 0.0, 0, 0, Vector2(0.540441, -139.925), 0.0, 0.0, 0, 0, Vector2(0.5625, 360), 0.0, 0.0, 0, 0, Vector2(0.797794, -129.057), 0.0, 0.0, 0, 0, Vector2(0.878676, 360), 0.0, 0.0, 0, 0, Vector2(1, -205.132), 0.0, 0.0, 0, 0]
+point_count = 10
+
+[sub_resource type="Gradient" id="Gradient_pi8kx"]
+offsets = PackedFloat32Array(0, 0.213675, 0.786325, 1)
+colors = PackedColorArray(0.783433, 0.783433, 0.783433, 0.216567, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0)
+
+[node name="Main" type="Node2D"]
+rotation = -0.00256826
+script = ExtResource("1_2sysg")
+
+[node name="WorldBorder" type="Line2D" parent="."]
+position = Vector2(0.59855, 26.396)
+scale = Vector2(1.02993, 0.99012)
+points = PackedVector2Array(0, -21.7, -10, 3765, 5645, 3765, 5645.42, -11.576, -5, -26.67)
+default_color = Color(1, 1, 1, 0.392157)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pgvsc")
+
+[node name="Walls" type="Node2D" parent="."]
+scale = Vector2(4, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2(-2.40903, 937.997)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(-0.00192618, 0.75)
+shape = SubResource("WorldBoundaryShape2D_m8lu0")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2(425.997, 0.5)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_m8lu0")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+position = Vector2(-0.79616, 309.999)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+shape = SubResource("WorldBoundaryShape2D_m8lu0")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2(1185.75, 3.04523)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2(-0.689262, 267.999)
+shape = SubResource("WorldBoundaryShape2D_m8lu0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorBackground" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.641934, 0.641934, 0.641934, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="FeverModeTint" type="CanvasLayer" parent="."]
+
+[node name="ColorBackground" type="ColorRect" parent="FeverModeTint"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0.0588235)
+metadata/_edit_use_anchors_ = true
+
+[node name="BackgroundParticles" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_0yaa6")
+position = Vector2(1287.71, 1284.31)
+rotation = 0.00256826
+amount = 500
+speed_scale = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(3500, 2200)
+spread = 180.0
+gravity = Vector2(1000, 100)
+angle_max = 2.0
+angle_curve = SubResource("Curve_7vbs5")
+scale_amount_max = 9.0
+color = Color(0, 0, 0, 1)
+color_ramp = SubResource("Gradient_pi8kx")
+anim_speed_max = 27.45
+
+[node name="RBCs" type="Node2D" parent="."]
+
+[node name="RedBloodCell21" parent="RBCs" instance=ExtResource("3_576kj")]
+position = Vector2(3475.7, 898.929)
+rotation = -2.92474
+speed_amplifier = 5.0
+
+[node name="RedBloodCell23" parent="RBCs" instance=ExtResource("3_576kj")]
+position = Vector2(3861.16, 1889.92)
+rotation = -2.92474
+speed_amplifier = 5.0
+
+[node name="RedBloodCell24" parent="RBCs" instance=ExtResource("3_576kj")]
+position = Vector2(2426.64, 2088.24)
+rotation = -2.92474
+speed_amplifier = 5.0
+
+[node name="RedBloodCell10" parent="RBCs" instance=ExtResource("3_576kj")]
+position = Vector2(1942.92, 1199.99)
+speed_amplifier = 5.0
+
+[node name="RedBloodCell12" parent="RBCs" instance=ExtResource("3_576kj")]
+position = Vector2(2981.7, 898.661)
+speed_amplifier = 5.0
+
+[node name="WBCs" type="Node2D" parent="."]
+
+[node name="WhiteBloodCell12" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(1832.92, 2369.72)
+rotation = 0.00256826
+
+[node name="WhiteBloodCell13" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(1414.15, 2278.64)
+rotation = -0.608647
+
+[node name="WhiteBloodCell19" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(1997.03, 2716.14)
+rotation = -0.608647
+
+[node name="WhiteBloodCell24" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(3896.77, 2043.01)
+rotation = 1.94089
+
+[node name="WhiteBloodCell14" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(3922.41, 1014.08)
+rotation = -0.608647
+
+[node name="WhiteBloodCell6" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(2970.01, 777.63)
+rotation = 0.00256826
+
+[node name="WhiteBloodCell16" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(1962.98, 1956.05)
+rotation = 0.00256826
+
+[node name="WhiteBloodCell3" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(2661.48, 596.837)
+rotation = 0.00256826
+
+[node name="WhiteBloodCell4" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(2002.56, 952.146)
+rotation = 0.00256826
+
+[node name="WhiteBloodCell5" parent="WBCs" instance=ExtResource("4_m3ntk")]
+position = Vector2(3240.53, 577.324)
+rotation = 0.00256826
+
+[node name="InfectCount" type="CanvasLayer" parent="."]
+
+[node name="Label3" type="Label" parent="InfectCount"]
+offset_left = 24.0
+offset_top = 496.0
+offset_right = 286.0
+offset_bottom = 549.0
+theme_override_font_sizes/font_size = 25
+text = "Red:
+White:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label5" type="Label" parent="InfectCount"]
+visible = false
+offset_left = 296.0
+offset_top = 88.0
+offset_right = 860.0
+offset_bottom = 151.0
+theme_override_font_sizes/font_size = 30
+text = "The body has entered Fever Mode!
+Faster White speed and spawnrate."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label4" type="Label" parent="InfectCount"]
+offset_left = 958.0
+offset_top = 320.0
+offset_right = 1220.0
+offset_bottom = 373.0
+theme_override_font_sizes/font_size = 25
+text = "Fever"
+horizontal_alignment = 1
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TimeLabel" type="Label" parent="InfectCount"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 278.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 40
+text = "RecordTime:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="InfectCount"]
+offset_left = 26.0
+offset_top = 574.0
+offset_right = 218.0
+offset_bottom = 629.0
+theme_override_font_sizes/font_size = 40
+text = "Infected:"
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="InfectCount"]
+offset_left = 1064.0
+offset_top = 376.0
+offset_right = 1112.0
+offset_bottom = 560.0
+max_value = 50.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Brain" parent="." node_paths=PackedStringArray("wbc_node_grp") instance=ExtResource("2_ttgus")]
+position = Vector2(2924.95, 410.513)
+rotation = 0.00256826
+wbc_node_grp = NodePath("../WBCs")
+
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="GameName" type="Label" parent="Menu"]
+offset_left = 351.0
+offset_top = 196.0
+offset_right = 801.0
+offset_bottom = 271.0
+theme_override_font_sizes/font_size = 75
+text = "Pathogenos"
+horizontal_alignment = 1
+
+[node name="PlayGameButton" type="Button" parent="Menu"]
+offset_left = 504.0
+offset_top = 291.0
+offset_right = 648.0
+offset_bottom = 339.0
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="InfoButton" type="Button" parent="Menu"]
+offset_left = 440.0
+offset_top = 347.0
+offset_right = 712.0
+offset_bottom = 395.0
+theme_override_font_sizes/font_size = 40
+text = "How to Play"
+
+[node name="ExitButton" type="Button" parent="Menu"]
+offset_left = 504.0
+offset_top = 404.0
+offset_right = 648.0
+offset_bottom = 452.0
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[node name="Heart" parent="." node_paths=PackedStringArray("rbc_node_grp") instance=ExtResource("6_8lyoc")]
+position = Vector2(1595.41, 2566.11)
+rbc_node_grp = NodePath("../RBCs")
+
+[node name="Player" parent="." instance=ExtResource("1_ilm1x")]
+position = Vector2(2895.17, 1493.44)
+
+[node name="VictoryMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="VictoryMenu"]
+offset_left = 389.0
+offset_top = 205.0
+offset_right = 767.0
+offset_bottom = 334.0
+theme_override_font_sizes/font_size = 30
+text = "You took over your host!
+
+Total Infected:
+Final Time:"
+horizontal_alignment = 1
+
+[node name="MainMenu" type="Button" parent="VictoryMenu"]
+offset_left = 455.0
+offset_top = 366.0
+offset_right = 696.0
+offset_bottom = 405.0
+theme_override_font_sizes/font_size = 25
+text = "I am awesome"
+
+[node name="InfoMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="InfoLabel" type="Label" parent="InfoMenu"]
+offset_left = 104.0
+offset_top = 80.0
+offset_right = 705.0
+offset_bottom = 482.0
+theme_override_font_sizes/font_size = 23
+text = "You're a parasite.
+Infect Red cells and avoid White cells,
+ and take over your host's Brain to win the game.
+
+The Brain spawns White cells, while the Heart
+spawns Red cells. Infecting the Heart
+will spawn Infected cells.
+
+White cells are strong lil guys; they can eliminate
+you in three hits. Red cells will try their very best
+to make sure you can't catch up to them.
+Two Infected cells can take out a White cell.
+
+You can run, but be careful; running for too
+long might trigger the body's fever system."
+horizontal_alignment = 1
+
+[node name="InfoLabel4" type="Label" parent="InfoMenu"]
+offset_left = 776.0
+offset_top = 26.0
+offset_right = 1132.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 23
+text = "WASD /Arrow keys- movement
+Q- Infected cells attack Brain
+E- Infected cells attack Heart
+F- cancel boss attack
+Shift/Ctrl- hold to run
+P/Esc- pause game"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="InfoMenu"]
+offset_left = 336.0
+offset_top = 512.0
+offset_right = 476.0
+offset_bottom = 567.0
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[node name="Optimize1" type="Button" parent="InfoMenu"]
+offset_left = 949.0
+offset_top = 509.0
+offset_right = 1131.0
+offset_bottom = 548.0
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "Glow enabled"
+
+[node name="Optimize2" type="Button" parent="InfoMenu"]
+offset_left = 906.0
+offset_top = 553.0
+offset_right = 1131.0
+offset_bottom = 592.0
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "Particles enabled"
+
+[node name="InfoLabel2" type="Label" parent="InfoMenu"]
+offset_left = 664.0
+offset_top = 445.0
+offset_right = 1128.0
+offset_bottom = 502.0
+theme_override_font_sizes/font_size = 20
+text = "1- Spawn Red
+2- Spawn White"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="InfoLabel3" type="Label" parent="InfoMenu"]
+offset_left = 704.0
+offset_top = 608.0
+offset_right = 1168.0
+offset_bottom = 665.0
+theme_override_font_sizes/font_size = 20
+text = "Made by ztier for Godot Wild Jam #79"
+horizontal_alignment = 1
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_gamto")
+autoplay = true
+
+[node name="HealthIcons" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="HealthTexture" type="TextureRect" parent="HealthIcons"]
+visible = false
+offset_left = 969.0
+offset_top = 592.0
+offset_right = 1005.0
+offset_bottom = 628.0
+texture = ExtResource("4_y7ekx")
+expand_mode = 1
+
+[node name="HealthTexture2" type="TextureRect" parent="HealthIcons"]
+visible = false
+offset_left = 921.0
+offset_top = 592.0
+offset_right = 957.0
+offset_bottom = 628.0
+texture = ExtResource("4_y7ekx")
+expand_mode = 1
+
+[node name="HealthTexture3" type="TextureRect" parent="HealthIcons"]
+visible = false
+offset_left = 873.0
+offset_top = 592.0
+offset_right = 909.0
+offset_bottom = 628.0
+texture = ExtResource("4_y7ekx")
+expand_mode = 1
+
+[node name="HealthTexture4" type="TextureRect" parent="HealthIcons"]
+visible = false
+offset_left = 825.0
+offset_top = 592.0
+offset_right = 861.0
+offset_bottom = 628.0
+texture = ExtResource("4_y7ekx")
+expand_mode = 1
+
+[node name="LivesLabel" type="Label" parent="HealthIcons"]
+offset_left = 1023.0
+offset_top = 593.0
+offset_right = 1135.0
+offset_bottom = 628.0
+theme_override_font_sizes/font_size = 35
+text = "Health"
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ResumeButton" type="Button" parent="PauseMenu"]
+offset_left = 448.0
+offset_top = 272.0
+offset_right = 712.0
+offset_bottom = 310.0
+theme_override_font_sizes/font_size = 30
+text = "Resume playing"
+
+[node name="InfoMenu" type="Button" parent="PauseMenu"]
+offset_left = 448.0
+offset_top = 324.0
+offset_right = 712.0
+offset_bottom = 362.0
+theme_override_font_sizes/font_size = 30
+text = "How to play"
+
+[node name="MainMenu" type="Button" parent="PauseMenu"]
+offset_left = 448.0
+offset_top = 376.0
+offset_right = 712.0
+offset_bottom = 414.0
+theme_override_font_sizes/font_size = 30
+text = "Back to menu"
+
+[node name="Label" type="Label" parent="PauseMenu"]
+offset_left = 504.0
+offset_top = 216.0
+offset_right = 652.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+
+[connection signal="pressed" from="Menu/PlayGameButton" to="." method="_on_play_game_button_pressed"]
+[connection signal="pressed" from="Menu/InfoButton" to="." method="_on_info_button_pressed"]
+[connection signal="pressed" from="Menu/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VictoryMenu/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="InfoMenu/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="InfoMenu/Optimize1" to="." method="_on_glow_toggled"]
+[connection signal="toggled" from="InfoMenu/Optimize2" to="." method="_on_particles_toggled"]
+[connection signal="pressed" from="PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/InfoMenu" to="." method="_on_info_menu_pressed"]
+[connection signal="pressed" from="PauseMenu/MainMenu" to="." method="_on_main_menu_pressed"]

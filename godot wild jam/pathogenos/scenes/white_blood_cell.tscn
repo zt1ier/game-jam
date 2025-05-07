@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c615hpnmavyjc"]
+
+[ext_resource type="Texture2D" uid="uid://bqywu0sdvqqsr" path="res://whitecircle-removebg-preview.png" id="1_0obm4"]
+[ext_resource type="Script" path="res://scripts/white_blood_cell.gd" id="1_w5cvc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x04eh"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_de5pr"]
+radius = 254.002
+
+[node name="WhiteBloodCell" type="CharacterBody2D"]
+script = ExtResource("1_w5cvc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_x04eh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.128205, 0.128205)
+texture = ExtResource("1_0obm4")
+
+[node name="DetectInfectedRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectInfectedRadius"]
+shape = SubResource("CircleShape2D_de5pr")
+
+[node name="DetectPlayerRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(400, 0)
+
+[connection signal="body_entered" from="DetectInfectedRadius" to="." method="_on_detect_infected_radius_body_entered"]
+[connection signal="body_exited" from="DetectInfectedRadius" to="." method="_on_detect_infected_radius_body_exited"]

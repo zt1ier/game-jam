@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr0684aj8mbs1"]
+
+[ext_resource type="Texture2D" uid="uid://bqywu0sdvqqsr" path="res://whitecircle-removebg-preview.png" id="1_gtlcc"]
+[ext_resource type="Script" path="res://scripts/heart.gd" id="1_rt3oc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55mvn"]
+radius = 176.011
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ed1qm"]
+radius = 173.1
+
+[node name="Heart" type="Node2D"]
+script = ExtResource("1_rt3oc")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_55mvn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_ed1qm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(1.47009, 1.47009)
+texture = ExtResource("1_gtlcc")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="RBCSpawnMarker" type="Marker2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -43.0
+offset_top = -40.0
+offset_right = 44.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 30
+text = "Heart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -144.0
+offset_top = -10.0
+offset_right = 146.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 50
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

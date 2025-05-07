@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://dh1xnsrc0i6dk"]
+
+[ext_resource type="Script" path="res://scripts/red_blood_cell.gd" id="1_u4w10"]
+[ext_resource type="Texture2D" uid="uid://bdo0sawu432nr" path="res://redcircle-removebg-preview.png" id="2_y8jkp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_861x1"]
+radius = 49.0408
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uco45"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1jf4"]
+radius = 176.003
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgnen"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxau8"]
+radius = 16.0312
+
+[node name="RedBloodCell" type="CharacterBody2D"]
+script = ExtResource("1_u4w10")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_861x1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uco45")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.128205, 0.128205)
+texture = ExtResource("2_y8jkp")
+
+[node name="InfectedDetection" type="Area2D" parent="."]
+visible = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfectedDetection"]
+shape = SubResource("CircleShape2D_n1jf4")
+
+[node name="InfectedCollision" type="Area2D" parent="."]
+visible = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfectedCollision"]
+shape = SubResource("CircleShape2D_vgnen")
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_sxau8")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_detection_collision_body_entered"]
+[connection signal="body_entered" from="InfectedDetection" to="." method="_on_infected_detection_body_entered"]
+[connection signal="body_exited" from="InfectedDetection" to="." method="_on_infected_detection_body_exited"]
+[connection signal="body_entered" from="InfectedCollision" to="." method="_on_infected_collision_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
