@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyhha2800lmt6"]
+
+[ext_resource type="PackedScene" uid="uid://cq2yoakkxnxcj" path="res://scenes/citizen.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c8vj28jhetwc1" path="res://scenes/documents/document.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Citizen" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(619, 254)
+discrepancy_chance = 1.0
+
+[node name="Document" parent="." instance=ExtResource("2_0xm2m")]
+offset_left = 619.0
+offset_top = 254.0
+offset_right = 619.0
+offset_bottom = 254.0
+script = null
