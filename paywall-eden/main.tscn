@@ -1,17 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyhha2800lmt6"]
 
-[ext_resource type="PackedScene" uid="uid://cq2yoakkxnxcj" path="res://scenes/citizen.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://c8vj28jhetwc1" path="res://scenes/documents/document.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://byd83xbmf5hx0" path="res://scenes/telephone.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c0r2am6lalx7v" path="res://scenes/monitor.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Citizen" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(619, 254)
-discrepancy_chance = 1.0
+[node name="Telephone" parent="." instance=ExtResource("1_ig7tw")]
+offset_left = 210.0
+offset_top = 479.0
+offset_right = 338.0
+offset_bottom = 607.0
 
-[node name="Document" parent="." instance=ExtResource("2_0xm2m")]
-offset_left = 619.0
-offset_top = 254.0
-offset_right = 619.0
-offset_bottom = 254.0
-script = null
+[node name="Monitor" parent="." instance=ExtResource("2_0xm2m")]
+offset_left = 672.0
+offset_top = 64.0
+offset_right = 1014.0
+offset_bottom = 118.0
+grow_horizontal = 1
+grow_vertical = 1

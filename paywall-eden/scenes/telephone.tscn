@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://byd83xbmf5hx0"]
+
+[ext_resource type="Script" uid="uid://cohllm4vd21yh" path="res://scripts/telephone.gd" id="1_1601r"]
+
+[node name="Telephone" type="Button"]
+offset_right = 128.0
+offset_bottom = 128.0
+text = "phone"
+script = ExtResource("1_1601r")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
