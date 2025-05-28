@@ -140,8 +140,6 @@ func generate_customer() -> Dictionary:
 	var full_name = first_name + " " + last_name
 
 	var city = cities.pick_random()
-
-	var account_id = str(randi_range(1234567, 9999999))
 	var birth_year = randi_range(1930, 1960)
 	var account_created_date = _random_date(1970, 1979)
 
@@ -156,12 +154,9 @@ func generate_customer() -> Dictionary:
 		}
 
 	return {
-		"first_name": first_name,
-		"last_name": last_name,
 		"full_name": full_name,
 		"birth_year": birth_year,
 		"city": city,
-		"account_id": account_id,
 		"account_created": account_created_date,
 		"subscriptions": subscriptions
 	}

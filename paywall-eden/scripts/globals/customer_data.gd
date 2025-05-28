@@ -1,27 +1,32 @@
 extends Node
 
 
-var generated_customers: int = 5
+var generated_customers: int = 1000
 
 
-## data of customers before corruption injection
 var customer_data: Dictionary = {}
 
 
 func _ready() -> void:
 	_generate()
 
+	## debug
 	for customer in customer_data.keys():
-		print("%s\n\n" % customer_data[customer])
+		print("ID: %s --- %s\n\n" % [customer, customer_data[customer]])
 
 
 func _generate() -> void:
-	while customer_data.size() < generated_customers:
-		var customer := CustomerGenerator.generate_customer()
-		var account_id = customer.get("account_id", "")
+	var available_ids := []
+	for id in range(1234567, 10000000):
+		available_ids.append(id)
 
-		if not customer_data.has(account_id):
-			customer_data[account_id] = customer
+	available_ids.shuffle()
+
+	for i in range(generated_customers):
+		var customer := CustomerGenerator.generate_customer()
+		var account_id = str(available_ids[i])
+		customer["account_id"] = account_id
+		customer_data[account_id] = customer
 
 
 func get_customer_by_id(account_id: String) -> Dictionary:

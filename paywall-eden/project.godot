@@ -18,9 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 Bridge="*res://addons/playgama_bridge/bridge.gd"
-TimeManager="*res://scripts/globals/time_manager.gd"
-CustomerGenerator="*res://scripts/globals/customer_generator.gd"
 CustomerData="*res://scripts/globals/customer_data.gd"
+CustomerGenerator="*res://scripts/globals/customer_generator.gd"
+DialogueManager="*res://scripts/globals/dialogue_manager.gd"
 
 [display]
 

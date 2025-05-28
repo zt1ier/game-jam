@@ -16,7 +16,7 @@ func _on_search_bar_text_submitted(query: String) -> void:
 	print(customer)
 
 	if customer.is_empty():
-		search_results.append_text("[color=red]No account found with ID: %s[/color]" % query)
+		search_results.append_text("No account found with ID: %s" % query)
 		return
 
 	var summary := "Name: %s\n" % customer.full_name
