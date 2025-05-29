@@ -1,32 +1,47 @@
 extends Node
 
 
-var generated_customers: int = 1000
+var generated_customers: int = 15000
 
 
 var customer_data: Dictionary = {}
 
+var thread = Thread.new()
+
 
 func _ready() -> void:
-	_generate()
-
-	## debug
-	for customer in customer_data.keys():
-		print("ID: %s --- %s\n\n" % [customer, customer_data[customer]])
+	var thread_data := { "count" : generated_customers}
+	var callable := Callable(self, "_generate").bind(thread_data)
+	thread.start(callable)
 
 
-func _generate() -> void:
+func _generate(data: Dictionary) -> Dictionary:
+	var generated_customers = data["count"]
+	var local_customer_data := {}
+
 	var available_ids := []
-	for id in range(1234567, 10000000):
+	for id in range(1, generated_customers + 1):
 		available_ids.append(id)
-
 	available_ids.shuffle()
 
 	for i in range(generated_customers):
 		var customer := CustomerGenerator.generate_customer()
-		var account_id = str(available_ids[i])
+		var account_id = str(available_ids[i]).pad_zeros(5)
 		customer["account_id"] = account_id
-		customer_data[account_id] = customer
+		local_customer_data[account_id] = customer
+		#print(i)
+
+	return local_customer_data
+
+
+func _process(delta: float) -> void:
+	if not thread.is_alive() and customer_data.is_empty():
+		var result = thread.wait_to_finish()
+		customer_data = result
+
+		## debug
+		for customer in customer_data.keys():
+			print("ID: %s --- %s\n\n" % [customer, customer_data[customer]])
 
 
 func get_customer_by_id(account_id: String) -> Dictionary:
