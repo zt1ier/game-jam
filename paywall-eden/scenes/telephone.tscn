@@ -2,10 +2,30 @@
 
 [ext_resource type="Script" uid="uid://cohllm4vd21yh" path="res://scripts/telephone.gd" id="1_1601r"]
 
-[node name="Telephone" type="Button"]
+[node name="Telephone" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 128.0
 offset_bottom = 128.0
-text = "phone"
 script = ExtResource("1_1601r")
 
-[connection signal="pressed" from="." to="." method="_on_pressed"]
+[node name="CallButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "telephone"
+
+[node name="DialogueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = -144.0
+offset_right = 40.0
+offset_bottom = -121.0
+text = "text"
+
+[node name="Responses" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 40.0
+offset_bottom = 88.0
+
+[connection signal="pressed" from="CallButton" to="." method="_on_call_answered"]

@@ -108,14 +108,6 @@ var last_names: Array = [
 	"Vellin",
 ]
 
-var personalities: Array = [
-	"Angry",
-	"Forgetful",
-	"Corporate Stooge",
-	"Comedian",
-	"Desperate",
-]
-
 var cities: Array = [
 	"Yelgrad",
 	"Tarnova",
@@ -146,7 +138,7 @@ func generate_customer() -> Dictionary:
 	var first_name = first_names.pick_random()
 	var last_name = last_names.pick_random()
 	var full_name = first_name + " " + last_name
-	var personality = personalities.pick_random()
+	var mood_points = randi_range(3, 5)
 
 	var city = cities.pick_random()
 	var birth_year = randi_range(1930, 1960)
@@ -164,7 +156,7 @@ func generate_customer() -> Dictionary:
 
 	return {
 		"full_name": full_name,
-		"personality": personality,
+		"mood_points": mood_points,
 		"birth_year": birth_year,
 		"city": city,
 		"account_created": account_created_date,

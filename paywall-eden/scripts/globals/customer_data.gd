@@ -29,7 +29,6 @@ func _generate(data: Dictionary) -> Dictionary:
 		var account_id = str(available_ids[i]).pad_zeros(5)
 		customer["account_id"] = account_id
 		local_customer_data[account_id] = customer
-		#print(i)
 
 	return local_customer_data
 
@@ -40,8 +39,8 @@ func _process(delta: float) -> void:
 		customer_data = result
 
 		## debug
-		for customer in customer_data.keys():
-			print("ID: %s --- %s\n\n" % [customer, customer_data[customer]])
+		#for customer in customer_data.keys():
+			#print("ID: %s --- %s\n\n" % [customer, customer_data[customer]])
 
 
 func get_customer_by_id(account_id: String) -> Dictionary:
