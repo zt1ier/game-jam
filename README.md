@@ -1,2 +1,2 @@
-# gamejam
-source code and other files for my game jam entries
+# Game jam entries
+Source code and other relevant files for all my game jam entries
