@@ -7,19 +7,19 @@ var dialogue_tree: Dictionary = {
 
 	"player_greeting": {
 		"-1": [
-			{"text": "What’s the issue?", "next": "customer_greeting"},
-			{"text": "Hurry it up. What's the problem?", "next": "customer_greeting"},
-			{"text": "Get to the point. I'm busy.", "next": "customer_greeting"}
+			{"text": "What’s the issue?", "value": -1, "next": "customer_greeting"},
+			{"text": "Hurry it up. What's the problem?", "value": -1, "next": "customer_greeting"},
+			{"text": "Get to the point. I'm busy.", "value": -1, "next": "customer_greeting"}
 		],
 		"0": [
-			{"text": "Hello, how can I assist you today?", "next": "customer_greeting"},
-			{"text": "Hi, tell me what’s going on.", "next": "customer_greeting"},
-			{"text": "Go ahead. What seems to be the problem?", "next": "customer_greeting"}
+			{"text": "Hello, how can I assist you today?", "value": 0, "next": "customer_greeting"},
+			{"text": "Hi, tell me what’s going on.", "value": 0, "next": "customer_greeting"},
+			{"text": "Go ahead. What seems to be the problem?", "value": 0, "next": "customer_greeting"}
 		],
 		"+1": [
-			{"text": "Hi there! Let’s get you sorted.", "next": "customer_greeting"},
-			{"text": "Great to hear from you! What can I do for you today?", "next": "customer_greeting"},
-			{"text": "Thanks for calling! Let's fix this together.", "next": "customer_greeting"}
+			{"text": "Hi there! Let’s get you sorted.", "value": 1, "next": "customer_greeting"},
+			{"text": "Great to hear from you! What can I do for you today?", "value": 1, "next": "customer_greeting"},
+			{"text": "Thanks for calling! Let's fix this together.", "value": 1, "next": "customer_greeting"}
 		]
 	},
 
@@ -83,19 +83,19 @@ var dialogue_tree: Dictionary = {
 
 	"player_issue_report": {
 		"-1": [
-			{"text": "Sounds like your fault. ID?", "next": "customer_get_account"},
-			{"text": "Give me your ID.", "next": "customer_get_account"},
-			{"text": "Bet you didn’t pay. ID?", "next": "customer_get_account"}
+			{"text": "Sounds like your fault. ID?", "value": -1, "next": "customer_get_account"},
+			{"text": "Give me your ID.", "value": -1, "next": "customer_get_account"},
+			{"text": "Bet you didn’t pay. ID?", "value": -1, "next": "customer_get_account"}
 		],
 		"0": [
-			{"text": "Could be a glitch. I’ll need your ID.", "next": "customer_get_account"},
-			{"text": "Let’s check your account. Can you give me your ID?", "next": "customer_get_account"},
-			{"text": "Alright. First, your account ID please.", "next": "customer_get_account"}
+			{"text": "Could be a glitch. I’ll need your ID.", "value": 0, "next": "customer_get_account"},
+			{"text": "Let’s check your account. Can you give me your ID?", "value": 0, "next": "customer_get_account"},
+			{"text": "Alright. First, your account ID please.", "value": 0, "next": "customer_get_account"}
 		],
 		"+1": [
-			{"text": "Let's get this fixed. What’s your ID?", "next": "customer_get_account"},
-			{"text": "I’ll take care of it — just need your ID.", "next": "customer_get_account"},
-			{"text": "No worries, we’ll sort this out. ID please!", "next": "customer_get_account"}
+			{"text": "Let's get this fixed. What’s your ID?", "value": 1, "next": "customer_get_account"},
+			{"text": "I’ll take care of it — just need your ID.", "value": 1, "next": "customer_get_account"},
+			{"text": "No worries, we’ll sort this out. ID please!", "value": 1, "next": "customer_get_account"}
 		]
 	},
 
@@ -103,18 +103,18 @@ var dialogue_tree: Dictionary = {
 
 	"customer_get_account": {
 		"angry": [
-			{"text": "Just fix it already. {account_id}", "next": "system_check"},
-			{"text": "Take the damn ID: {account_id}", "next": "system_check"},
+			{"text": "Just fix it already. {account_id}.", "next": "system_check"},
+			{"text": "Take the damn ID: {account_id}.", "next": "system_check"},
 			{"text": "Whatever. It’s {account_id}.", "next": "system_check"}
 		],
 		"neutral": [
 			{"text": "It’s {account_id}.", "next": "system_check"},
-			{"text": "My ID is {account_id}", "next": "system_check"},
+			{"text": "My ID is {account_id}.", "next": "system_check"},
 			{"text": "{account_id}.", "next": "system_check"}
 		],
 		"grateful": [
 			{"text": "Thank you. My ID is {account_id}.", "next": "system_check"},
-			{"text": "Really appreciate it — here’s my ID: {account_id}", "next": "system_check"},
+			{"text": "Really appreciate it — here’s my ID: {account_id}.", "next": "system_check"},
 			{"text": "Cheers. It’s {account_id}.", "next": "system_check"}
 		]
 	},
@@ -205,12 +205,26 @@ var dialogue_tree: Dictionary = {
 }
 
 
-var starting_branch: String = "player_greeting"
+var branches: Array = [
+	"player_greeting",
+	"customer_greeting",
+	"customer_issue_report",
+	"player_issue_report",
+	"customer_get_account",
+	"system_check",
+	"notify_results",
+	"customer_reaction",
+	"customer_negotiate",
+	"player_decision",
+	"call_end",
+]
+
 var current_branch: String
+var branch_index: int = 0
 
 
 func _ready() -> void:
-	current_branch = starting_branch
+	current_branch = branches[branch_index] ## "player_greeting"
 
 
 func get_dialogue(mood: String = "", subscription: String = "", account_id: String = "") -> Variant:
@@ -218,16 +232,25 @@ func get_dialogue(mood: String = "", subscription: String = "", account_id: Stri
 	if branch_data == null:
 		return "error: invalid dialogue branch"
 
+	branch_index += 1
+	if branch_index >= 11:
+		branch_index = 0
+		return "CALL ENDED!"
+	current_branch = branches[branch_index]
+
 	if typeof(branch_data) == TYPE_DICTIONARY:
 		## then branch_data is player branch and contains responses
 		if branch_data.has("-1") and branch_data.has("0") and branch_data.has("+1"):
+			var chosen_lines := []
+			for value in branch_data.values():
+				var random_line = value.pick_random()
+				chosen_lines.append(random_line)
 			return {
-				"dialogue_type": "player_choice",
-				"options": branch_data,
+				"options": chosen_lines,
 			}
 
 	## categorize by subscription and mood (issue_report)
-	if subscription != "" and branch_data.has("subscription"):
+	if subscription != "" and branch_data.has(subscription):
 		## then branch_data is customer branch
 		var lines_by_mood = branch_data[subscription].get(mood, null)
 		print(lines_by_mood)
@@ -235,7 +258,6 @@ func get_dialogue(mood: String = "", subscription: String = "", account_id: Stri
 			var chosen_line = _pick_line(lines_by_mood, account_id)
 			_set_next_branch(lines_by_mood, chosen_line)
 			return {
-				"dialogue_type": "customer_text",
 				"text": chosen_line,
 			}
 
@@ -245,7 +267,6 @@ func get_dialogue(mood: String = "", subscription: String = "", account_id: Stri
 		var chosen_line = _pick_line(lines_by_mood, account_id)
 		_set_next_branch(lines_by_mood, chosen_line)
 		return {
-			"dialogue_type": "customer_text",
 			"text": chosen_line,
 			}
 
@@ -254,11 +275,11 @@ func get_dialogue(mood: String = "", subscription: String = "", account_id: Stri
 		var chosen_line = _pick_line(branch_data, account_id)
 		_set_next_branch(branch_data, chosen_line)
 		return {
-			"dialogue_type": "customer_text",
 			"text": chosen_line,
 		}
 
-	return "error: unexpected dialogue format"
+	printerr("unexpected dialogue format")
+	return "error ^^^"
 
 
 func get_mood(mood: int) -> String:
