@@ -116,8 +116,17 @@ var cities: Array = [
 	"Ulbera",
 ]
 
+var sectors: Array = [
+	"A",
+	"B",
+	"C",
+	"D",
+	"E",
+	"F",
+]
+
 var services: Array = ["Electricity", "Water", "Heat"]
-var statuses: Array = ["Active", "Suspended", "Pending"]
+var statuses: Array = ["Active", "Suspended"]
 
 
 static var _initialized: bool = false
@@ -140,7 +149,7 @@ func generate_customer() -> Dictionary:
 	var full_name = first_name + " " + last_name
 	var mood_points = randi_range(3, 5)
 
-	var city = cities.pick_random()
+	var sector = sectors.pick_random()
 	var birth_year = randi_range(1930, 1960)
 	var account_created_date = _random_date(1970, 1979)
 
@@ -148,17 +157,25 @@ func generate_customer() -> Dictionary:
 	for service in services:
 		var last_payment = _date_before(current_date, 1, 2)
 		var next_due = _date_after(last_payment, 1, 1)
+
+		var previous_status = subscriptions.get(service, {}).get("status", null)
+		var new_status = statuses.pick_random()
+
+		if previous_status == "Suspended":
+			while new_status == "Suspended":
+				new_status = statuses.pick_random()
+
 		subscriptions[service] = {
 			"last_payment": last_payment,
 			"next_due": next_due,
-			"status": statuses.pick_random()
+			"status": new_status
 		}
 
 	return {
 		"full_name": full_name,
 		"mood_points": mood_points,
 		"birth_year": birth_year,
-		"city": city,
+		"sector": sector,
 		"account_created": account_created_date,
 		"subscriptions": subscriptions
 	}

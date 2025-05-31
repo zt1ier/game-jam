@@ -7,7 +7,7 @@ var dialogue_tree: Dictionary = {
 
 	"player_greeting": {
 		"-1": [
-			{"text": "What’s the issue?", "value": -1, "next": "customer_greeting"},
+			{"text": "What’s the issue? Come on.", "value": -1, "next": "customer_greeting"},
 			{"text": "Hurry it up. What's the problem?", "value": -1, "next": "customer_greeting"},
 			{"text": "Get to the point. I'm busy.", "value": -1, "next": "customer_greeting"}
 		],
@@ -19,7 +19,7 @@ var dialogue_tree: Dictionary = {
 		"+1": [
 			{"text": "Hi there! Let’s get you sorted.", "value": 1, "next": "customer_greeting"},
 			{"text": "Great to hear from you! What can I do for you today?", "value": 1, "next": "customer_greeting"},
-			{"text": "Thanks for calling! Let's fix this together.", "value": 1, "next": "customer_greeting"}
+			{"text": "Hello! What can I do for you today?", "value": 1, "next": "customer_greeting"}
 		]
 	},
 
@@ -43,7 +43,7 @@ var dialogue_tree: Dictionary = {
 	"customer_issue_report": {
 		"electricity": {
 			"angry": [
-				{"text": "No power again. What am I even paying for?", "next": "player_issue_report"},
+				{"text": "No power again! What am I even paying for?", "next": "player_issue_report"},
 				{"text": "Another blackout! Fix it!", "next": "player_issue_report"},
 				{"text": "The power's out! Come on!", "next": "player_issue_report"}
 			],
@@ -256,7 +256,6 @@ func get_dialogue(mood: String = "", subscription: String = "", account_id: Stri
 		print(lines_by_mood)
 		if lines_by_mood:
 			var chosen_line = _pick_line(lines_by_mood, account_id)
-			_set_next_branch(lines_by_mood, chosen_line)
 			return {
 				"text": chosen_line,
 			}
@@ -265,7 +264,6 @@ func get_dialogue(mood: String = "", subscription: String = "", account_id: Stri
 	if mood != "" and branch_data.has(mood):
 		var lines_by_mood = branch_data[mood]
 		var chosen_line = _pick_line(lines_by_mood, account_id)
-		_set_next_branch(lines_by_mood, chosen_line)
 		return {
 			"text": chosen_line,
 			}
@@ -273,7 +271,6 @@ func get_dialogue(mood: String = "", subscription: String = "", account_id: Stri
 	## if branch_data is a flat list, not a dictionary
 	if typeof(branch_data) == TYPE_ARRAY:
 		var chosen_line = _pick_line(branch_data, account_id)
-		_set_next_branch(branch_data, chosen_line)
 		return {
 			"text": chosen_line,
 		}
@@ -300,11 +297,3 @@ func _pick_line(lines: Array, account_id: String) -> String:
 		return chosen_line.replace("{account_id}", account_id)
 
 	return "error: no valid dialogue line found"
-
-
-func _set_next_branch(lines: Array, chosen_lines: String) -> void:
-	for line in lines:
-		if line.has("text"):
-			if line["text"].replace("{account_id}", "") == chosen_lines.replace("{account_id}", ""):
-				current_branch = line.get("next", current_branch)
-				return

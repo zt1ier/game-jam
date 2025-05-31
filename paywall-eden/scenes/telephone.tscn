@@ -1,6 +1,71 @@
-[gd_scene load_steps=2 format=3 uid="uid://byd83xbmf5hx0"]
+[gd_scene load_steps=9 format=3 uid="uid://byd83xbmf5hx0"]
 
 [ext_resource type="Script" uid="uid://cohllm4vd21yh" path="res://scripts/telephone.gd" id="1_1601r"]
+[ext_resource type="Shader" uid="uid://d3iavln0l607e" path="res://scripts/shaders/outline.gdshader" id="2_e0f6x"]
+[ext_resource type="Texture2D" uid="uid://dvfj7sxyoukeb" path="res://assets/red-rotary-dial-phone-free-png.webp" id="2_xrb2d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b4wj1"]
+shader = ExtResource("2_e0f6x")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 2
+shader_parameter/inside = false
+shader_parameter/add_margins = false
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_qaqae"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CallButton:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_e0f6x"]
+resource_name = "hover_outline_entered"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CallButton:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 10.0]
+}
+
+[sub_resource type="Animation" id="Animation_b4wj1"]
+resource_name = "hover_outline_exited"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CallButton:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tplbr"]
+_data = {
+&"RESET": SubResource("Animation_qaqae"),
+&"hover_outline_entered": SubResource("Animation_e0f6x"),
+&"hover_outline_exited": SubResource("Animation_b4wj1")
+}
 
 [node name="Telephone" type="Control"]
 layout_mode = 3
@@ -9,23 +74,19 @@ offset_right = 128.0
 offset_bottom = 128.0
 script = ExtResource("1_1601r")
 
-[node name="CallButton" type="Button" parent="."]
+[node name="CallButton" type="TextureButton" parent="."]
+material = SubResource("ShaderMaterial_b4wj1")
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-text = "telephone"
+offset_right = 576.0
+offset_bottom = 368.0
+texture_normal = ExtResource("2_xrb2d")
+ignore_texture_size = true
+stretch_mode = 4
 
-[node name="DialogueLabel" type="Label" parent="."]
-layout_mode = 0
-offset_top = -144.0
-offset_right = 40.0
-offset_bottom = -121.0
-text = "text"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tplbr")
+}
 
-[node name="Responses" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_top = 48.0
-offset_right = 40.0
-offset_bottom = 88.0
-
-[connection signal="pressed" from="CallButton" to="." method="_on_call_answered"]
+[connection signal="mouse_entered" from="CallButton" to="." method="_on_call_button_mouse_entered"]
+[connection signal="mouse_exited" from="CallButton" to="." method="_on_call_button_mouse_exited"]

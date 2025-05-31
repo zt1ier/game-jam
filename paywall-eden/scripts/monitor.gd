@@ -20,7 +20,7 @@ func _on_search_bar_text_submitted(query: String) -> void:
 		return
 
 	var summary := "Name: %s\n" % customer.full_name
-	summary += "Address: %s\n" % customer.city
+	summary += "Sector: %s\n" % customer.sector
 	summary += "Account Created: %s\n" % customer.account_created
 	summary += "Subscriptions:\n"
 
