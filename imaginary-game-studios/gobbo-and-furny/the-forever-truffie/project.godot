@@ -14,6 +14,10 @@ config/name="The Forever Truffie"
 run/main_scene="uid://bu7m5bwxsutry"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
+[autoload]
+
+TruffieManager="*res://scripts/truffie_manager.gd"
+
 [display]
 
 window/size/window_width_override=576

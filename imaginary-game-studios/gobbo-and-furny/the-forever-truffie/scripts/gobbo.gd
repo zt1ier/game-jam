@@ -3,7 +3,7 @@ class_name Gobbo extends CharacterBody2D
 
 # default movement
 const SPEED: float = 400.0
-const JUMP_VELOCITY: float = -500.0
+const JUMP_VELOCITY: float = -1000.0
 const AIR_CONTROL: float = 2.0
 const FRICTION: float = 2000.0
 
@@ -96,7 +96,7 @@ func _process_jumping(delta: float) -> void:
 
 
 func _process_falling(delta: float) -> void:
-	var fall_speed = lerp(velocity.y, get_gravity().y, AIR_CONTROL * delta)
+	var fall_speed = lerp(velocity.y, get_gravity().y * 1.35, AIR_CONTROL * delta)
 	velocity.y = fall_speed
 
 	# give gradual air control, but preserve primary directional momentum

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bad3txjnon78j"]
+
+[ext_resource type="Script" uid="uid://xsjsif2lsjve" path="res://scripts/levels/level_1/truffroot_chunk.gd" id="1_jfx5h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uopxu"]
+size = Vector2(96, 96)
+
+[node name="TruffrootChunk1" type="StaticBody2D"]
+script = ExtResource("1_jfx5h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uopxu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.76837e-06, 9.53674e-07)
+scale = Vector2(4.8, 4.8)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
