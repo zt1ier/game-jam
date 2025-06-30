@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpn2ndmt1ga5r"]
+[gd_scene load_steps=7 format=3 uid="uid://bpn2ndmt1ga5r"]
 
 [ext_resource type="Script" uid="uid://bulr2gdci4vck" path="res://scripts/levels/level_2/level_2.gd" id="1_f1k8i"]
 [ext_resource type="PackedScene" uid="uid://cltbvpegm242h" path="res://scenes/levels/level_2/truffvine.tscn" id="2_v0jb6"]
 [ext_resource type="PackedScene" uid="uid://be7o78vygm7xu" path="res://scenes/gobbo.tscn" id="3_lp8so"]
+[ext_resource type="PackedScene" uid="uid://cio3ou8hj73vv" path="res://scenes/truffie.tscn" id="4_83l3i"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3luul"]
 normal = Vector2(0, -7)
@@ -46,5 +47,11 @@ show_percentage = false
 
 [node name="Gobbo" parent="." instance=ExtResource("3_lp8so")]
 position = Vector2(24, 216)
+
+[node name="Truffie" parent="." instance=ExtResource("4_83l3i")]
+position = Vector2(216, 224)
+
+[node name="Truffie2" parent="." instance=ExtResource("4_83l3i")]
+position = Vector2(984, 224)
 
 [connection signal="body_entered" from="Floor" to="." method="_on_floor_body_entered"]

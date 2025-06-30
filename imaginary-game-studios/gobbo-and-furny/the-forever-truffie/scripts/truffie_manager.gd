@@ -19,5 +19,4 @@ func increase_meter(amount: float) -> void:
 
 func decrease_meter_over_time(delta: float) -> void:
 	truffie_meter -= delta * 0.25
-	print(truffie_meter)
 	meter_changed.emit()

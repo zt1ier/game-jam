@@ -1,7 +1,7 @@
 class_name LevelOneDoor extends Area2D
 
 
-var is_player_nearby: bool = false
+var is_gobbo_nearby: bool = false
 
 
 func _ready() -> void:
@@ -12,13 +12,13 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_player_nearby and Input.is_action_just_pressed("interact"):
+	if is_gobbo_nearby and Input.is_action_just_pressed("interact"):
 		get_tree().change_scene_to_file("res://scenes/levels/level_2/level_2.tscn")
 
 
 func _on_body_entered(body: Gobbo) -> void:
-	is_player_nearby = true
+	is_gobbo_nearby = true
 
 
 func _on_body_exited(body: Gobbo) -> void:
-	is_player_nearby = false
+	is_gobbo_nearby = false

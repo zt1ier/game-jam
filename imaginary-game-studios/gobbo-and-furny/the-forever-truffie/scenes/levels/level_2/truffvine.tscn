@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cltbvpegm242h"]
+[gd_scene load_steps=5 format=3 uid="uid://cltbvpegm242h"]
+
+[ext_resource type="Script" uid="uid://d2os7vjg78rme" path="res://scripts/levels/level_2/truffvine.gd" id="1_cip31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4bs4"]
 size = Vector2(128, 48)
@@ -6,27 +8,37 @@ size = Vector2(128, 48)
 [sub_resource type="CircleShape2D" id="CircleShape2D_i4bs4"]
 radius = 24.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cip31"]
+radius = 56.0
+
 [node name="Truffvine" type="Node2D"]
+script = ExtResource("1_cip31")
 
-[node name="VineTop" type="StaticBody2D" parent="."]
+[node name="VineStart" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VineTop"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VineStart"]
 shape = SubResource("RectangleShape2D_i4bs4")
 
-[node name="VineTip" type="RigidBody2D" parent="."]
+[node name="VineEnd" type="RigidBody2D" parent="."]
+position = Vector2(0, 192)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VineTip"]
-position = Vector2(24, 152)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VineEnd"]
 shape = SubResource("CircleShape2D_i4bs4")
 
-[node name="Area2D" type="Area2D" parent="VineTip"]
+[node name="Area2D" type="Area2D" parent="VineEnd"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VineTip/Area2D"]
-position = Vector2(24, 152)
-shape = SubResource("CircleShape2D_i4bs4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VineEnd/Area2D"]
+shape = SubResource("CircleShape2D_cip31")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
-node_a = NodePath("../VineTop")
-node_b = NodePath("../VineTip")
+node_a = NodePath("../VineStart")
+node_b = NodePath("../VineEnd")
+angular_limit_enabled = true
 motor_enabled = true
 motor_target_velocity = 3.49066
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 3.0
+
+[connection signal="body_entered" from="VineEnd/Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="VineEnd/Area2D" to="." method="_on_body_exited"]
