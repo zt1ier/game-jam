@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cltbvpegm242h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4bs4"]
+size = Vector2(128, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i4bs4"]
+radius = 24.0
+
+[node name="Truffvine" type="Node2D"]
+
+[node name="VineTop" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VineTop"]
+shape = SubResource("RectangleShape2D_i4bs4")
+
+[node name="VineTip" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VineTip"]
+position = Vector2(24, 152)
+shape = SubResource("CircleShape2D_i4bs4")
+
+[node name="Area2D" type="Area2D" parent="VineTip"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VineTip/Area2D"]
+position = Vector2(24, 152)
+shape = SubResource("CircleShape2D_i4bs4")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../VineTop")
+node_b = NodePath("../VineTip")
+motor_enabled = true
+motor_target_velocity = 3.49066

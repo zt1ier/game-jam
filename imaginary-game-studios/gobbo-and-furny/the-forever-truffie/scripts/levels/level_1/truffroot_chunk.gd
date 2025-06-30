@@ -1,7 +1,7 @@
 class_name TruffrootChunk extends StaticBody2D
 
 
-signal done_falling(chunk: TruffrootChunk)
+signal done_falling
 
 
 @export var hover_position: Vector2 = Vector2.ZERO
@@ -94,4 +94,4 @@ func _on_screen_exited() -> void:
 	fall_speed = 0.0
 	collision.disabled = true
 
-	done_falling.emit(self)
+	done_falling.emit()

@@ -39,6 +39,10 @@ var jump_buffer_timer: float = 0.0
 @onready var state_label: Label = $StateLabel
 
 
+func _ready() -> void:
+	add_to_group("Gobbo")
+
+
 func _physics_process(delta: float) -> void:
 	# directional movement input
 	direction = Input.get_axis("move_left", "move_right")

@@ -1,12 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu7m5bwxsutry"]
+[gd_scene load_steps=10 format=3 uid="uid://bu7m5bwxsutry"]
 
 [ext_resource type="Script" uid="uid://cus2ot3gpv2vk" path="res://scripts/levels/level_1/level_1.gd" id="1_fngju"]
 [ext_resource type="PackedScene" uid="uid://be7o78vygm7xu" path="res://scenes/gobbo.tscn" id="2_5o1mp"]
 [ext_resource type="PackedScene" uid="uid://bad3txjnon78j" path="res://scenes/levels/level_1/truffroot_chunk.tscn" id="3_5o1mp"]
+[ext_resource type="Script" uid="uid://o305bh55cxyn" path="res://scripts/levels/level_1/door.gd" id="3_7uxs1"]
 [ext_resource type="PackedScene" uid="uid://cio3ou8hj73vv" path="res://scenes/truffie.tscn" id="4_spwf2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ig7tw"]
 normal = Vector2(0, -7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spwf2"]
+size = Vector2(256, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uxs1"]
+size = Vector2(58, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2h75"]
 size = Vector2(951.714, 67.7307)
@@ -15,13 +22,26 @@ size = Vector2(951.714, 67.7307)
 script = ExtResource("1_fngju")
 
 [node name="Gobbo" parent="." instance=ExtResource("2_5o1mp")]
-position = Vector2(241, 524)
+position = Vector2(200, 544)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(576, 576)
 shape = SubResource("WorldBoundaryShape2D_ig7tw")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(1168, 264)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource("RectangleShape2D_spwf2")
+
+[node name="Door" type="Area2D" parent="Platform"]
+position = Vector2(-45, -88)
+script = ExtResource("3_7uxs1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Door"]
+shape = SubResource("RectangleShape2D_7uxs1")
 
 [node name="HighTruffieNodes" type="Node2D" parent="."]
 
@@ -30,7 +50,7 @@ position = Vector2(799, 429)
 rotation = 2.8798
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HighTruffieNodes/TruffrootBridge"]
-rotation = -0.0890118
+rotation = -0.15708
 shape = SubResource("RectangleShape2D_g2h75")
 
 [node name="LowTruffieNodes" type="Node2D" parent="."]
@@ -55,13 +75,10 @@ position = Vector2(964, 308)
 initial_fall_delay = 3.5
 
 [node name="Truffie" parent="." instance=ExtResource("4_spwf2")]
-position = Vector2(312, 552)
+position = Vector2(312, 560)
 
 [node name="Truffie2" parent="." instance=ExtResource("4_spwf2")]
-position = Vector2(185, 556)
-
-[node name="Truffie3" parent="." instance=ExtResource("4_spwf2")]
-position = Vector2(130, 556)
+position = Vector2(96, 560)
 
 [node name="TruffieMeter" type="ProgressBar" parent="."]
 offset_left = 16.0

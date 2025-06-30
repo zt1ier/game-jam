@@ -1,4 +1,4 @@
-class_name LevelOne extends Node2D
+class_name LevelOne extends Levels
 
 
 const TRUFFROOT_CHUNK = preload("res://scenes/levels/level_1/truffroot_chunk.tscn")
@@ -9,17 +9,9 @@ var chunk_positions: Array[Vector2] = []
 var active_chunks: int = 0
 
 
-@onready var high_nodes: Node2D = $HighTruffieNodes
-@onready var low_nodes: Node2D = $LowTruffieNodes
-@onready var truffie_meter: ProgressBar = $TruffieMeter
-
 
 func _ready() -> void:
-	TruffieManager.connect("meter_changed", Callable(self, "_on_truffie_meter_changed"))
-
-	truffie_meter.max_value = 50
-
-	_on_truffie_meter_changed()
+	super()
 
 	# store initial chunk references and positions
 	for chunk in low_nodes.get_children():
@@ -45,7 +37,7 @@ func _start_drop_cycle() -> void:
 		chunk.reset(target_pos)
 
 
-func _on_chunk_done_falling(chunk: TruffrootChunk) -> void:
+func _on_chunk_done_falling() -> void:
 	active_chunks -= 1
 	if active_chunks <= 0:
 		_start_drop_cycle()
@@ -60,17 +52,5 @@ func _on_truffie_meter_changed() -> void:
 		_set_nodes(high_nodes, false)
 		_set_nodes(low_nodes, true)
 
-		print(active_chunks)
 		if active_chunks <= 0:
 			_start_drop_cycle()
-
-
-func _set_nodes(nodes: Node, enabled: bool) -> void:
-	for node in nodes.get_children():
-		if not node:
-			continue
-		node.visible = enabled
-		if node is CollisionObject2D:
-			for child in node.get_children():
-				if child is CollisionShape2D:
-					child.disabled = not enabled

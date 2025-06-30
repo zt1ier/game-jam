@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ilbo27i7axps" path="res://scripts/gobbo.gd" id="1_840my"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7vtf"]
-size = Vector2(64, 64)
+size = Vector2(48, 48)
 
 [node name="Gobbo" type="CharacterBody2D"]
 script = ExtResource("1_840my")
