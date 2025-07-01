@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2ye3mw5dv752"]
+
+[ext_resource type="PackedScene" uid="uid://dcnve5wnevytu" path="res://scenes/pipe.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://b78f84jo8hjrm" path="res://scenes/junction.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://brmey775geq02" path="res://scenes/endpoint.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://jdrrtxxekhap" path="res://scenes/furny.tscn" id="4_lquwl"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Pipes" type="Node2D" parent="."]
+
+[node name="Pipe" parent="Pipes" instance=ExtResource("1_0xm2m")]
+position = Vector2(480, 168)
+
+[node name="Pipe2" parent="Pipes" instance=ExtResource("1_0xm2m")]
+position = Vector2(672, 168)
+
+[node name="Junctions" type="Node2D" parent="."]
+
+[node name="Junction" parent="Junctions" instance=ExtResource("2_h2yge")]
+position = Vector2(512, 352)
+output_left = NodePath("../../Endpoints/Endpoint")
+output_right = NodePath("../Junction2")
+
+[node name="Junction2" parent="Junctions" instance=ExtResource("2_h2yge")]
+position = Vector2(672, 440)
+output_left = NodePath("../../Endpoints/Endpoint2")
+output_right = NodePath("../../Endpoints/Endpoint3")
+
+[node name="Endpoints" type="Node2D" parent="."]
+
+[node name="Endpoint" parent="Endpoints" instance=ExtResource("3_1bvp3")]
+position = Vector2(384, 608)
+
+[node name="Endpoint2" parent="Endpoints" instance=ExtResource("3_1bvp3")]
+position = Vector2(576, 608)
+
+[node name="Endpoint3" parent="Endpoints" instance=ExtResource("3_1bvp3")]
+position = Vector2(768, 608)
+
+[node name="Furny" parent="." instance=ExtResource("4_lquwl")]
+position = Vector2(320, 392)

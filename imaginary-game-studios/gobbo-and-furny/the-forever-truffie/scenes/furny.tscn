@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://jdrrtxxekhap"]
+
+[ext_resource type="Script" uid="uid://dsbge467btybr" path="res://scripts/furny.gd" id="1_n1621"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifiv6"]
+radius = 40.0
+height = 128.0
+
+[node name="Furny" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_n1621")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ifiv6")
