@@ -1,7 +1,10 @@
 class_name Truffie extends Area2D
 
 
-@export var travel_speed: float = 150.0
+signal truffie_resolved
+
+
+var travel_speed: float = 0.0
 
 
 var types: Array[String] = [
@@ -19,6 +22,8 @@ var current_target: Node2D # can be Junction
 
 
 func _ready() -> void:
+	add_to_group("Truffies")
+
 	_set_truffie_type()
 
 
@@ -48,19 +53,16 @@ func move_to_next() -> void:
 
 func _reached_endpoint() -> void:
 	if current_target:
-		var endpoint = current_target as Endpoint
 		var expected_type = current_target.type
 
 		if expected_type == type:
 			GutMeter.digest()
-			print("digested: %s" % type)
 		else:
 			GutMeter.reject()
-			print("rejected: %s" % type)
-
-		print("gut value: %s" % GutMeter.gut_value)
 
 	else:
-		printerr("invalid current_target.. somehow")
+		printerr("truffie.gd: invalid current_target.. somehow")
 
+	truffie_resolved.emit()
+	remove_from_group("Truffies")
 	queue_free()

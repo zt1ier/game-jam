@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://brmey775geq02"]
 
-[ext_resource type="Script" uid="uid://sifoo2ng6a1e" path="res://scripts/endpoint.gd" id="1_vdkol"]
+[ext_resource type="Script" uid="uid://sifoo2ng6a1e" path="res://scripts/game/endpoint.gd" id="1_vdkol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7e6k"]
 size = Vector2(80, 80)
@@ -10,3 +10,4 @@ script = ExtResource("1_vdkol")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g7e6k")
+debug_color = Color(0.453231, 0.453232, 0.453232, 1)

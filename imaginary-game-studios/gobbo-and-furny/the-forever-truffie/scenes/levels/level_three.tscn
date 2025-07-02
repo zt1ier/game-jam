@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctridwqwibo10"]
+
+[ext_resource type="PackedScene" uid="uid://cgcnorcuqanav" path="res://scenes/level.tscn" id="1_466fs"]
+[ext_resource type="PackedScene" uid="uid://dcnve5wnevytu" path="res://scenes/game/pipe.tscn" id="2_y0l6c"]
+[ext_resource type="PackedScene" uid="uid://b78f84jo8hjrm" path="res://scenes/game/junction.tscn" id="3_4umhc"]
+[ext_resource type="PackedScene" uid="uid://brmey775geq02" path="res://scenes/game/endpoint.tscn" id="4_7ry6i"]
+[ext_resource type="PackedScene" uid="uid://jdrrtxxekhap" path="res://scenes/game/furny.tscn" id="5_vmov0"]
+
+[node name="LevelThree" instance=ExtResource("1_466fs")]
+difficulty_lerp = 0.07
+
+[node name="Timer" parent="." index="4"]
+wait_time = 120.0
+
+[node name="Pipes" type="Node2D" parent="." index="5"]
+
+[node name="Pipe" parent="Pipes" index="0" instance=ExtResource("2_y0l6c")]
+position = Vector2(400, 168)
+target = NodePath("../../Junctions/Junction")
+
+[node name="Pipe2" parent="Pipes" index="1" instance=ExtResource("2_y0l6c")]
+position = Vector2(512, 168)
+target = NodePath("../../Junctions/Junction2")
+
+[node name="Pipe3" parent="Pipes" index="2" instance=ExtResource("2_y0l6c")]
+position = Vector2(624, 168)
+target = NodePath("../../Junctions/Junction3")
+
+[node name="Pipe4" parent="Pipes" index="3" instance=ExtResource("2_y0l6c")]
+position = Vector2(736, 168)
+target = NodePath("../../Junctions/Junction4")
+
+[node name="Junctions" type="Node2D" parent="." index="6"]
+
+[node name="Junction" parent="Junctions" index="0" instance=ExtResource("3_4umhc")]
+position = Vector2(400, 272)
+output_left = NodePath("../Junction5")
+output_right = NodePath("../Junction2")
+
+[node name="Junction2" parent="Junctions" index="1" instance=ExtResource("3_4umhc")]
+position = Vector2(512, 272)
+output_left = NodePath("../Junction5")
+output_right = NodePath("../Junction6")
+
+[node name="Junction3" parent="Junctions" index="2" instance=ExtResource("3_4umhc")]
+position = Vector2(624, 272)
+output_left = NodePath("../Junction5")
+output_right = NodePath("../Junction6")
+
+[node name="Junction4" parent="Junctions" index="3" instance=ExtResource("3_4umhc")]
+position = Vector2(736, 272)
+output_left = NodePath("../Junction3")
+output_right = NodePath("../Junction6")
+
+[node name="Junction5" parent="Junctions" index="4" instance=ExtResource("3_4umhc")]
+position = Vector2(456, 376)
+output_left = NodePath("../Junction7")
+output_right = NodePath("../Junction8")
+
+[node name="Junction6" parent="Junctions" index="5" instance=ExtResource("3_4umhc")]
+position = Vector2(680, 376)
+output_left = NodePath("../Junction7")
+output_right = NodePath("../Junction8")
+
+[node name="Junction7" parent="Junctions" index="6" instance=ExtResource("3_4umhc")]
+position = Vector2(456, 480)
+output_left = NodePath("../../Endpoints/Endpoint")
+output_right = NodePath("../../Endpoints/Endpoint2")
+
+[node name="Junction8" parent="Junctions" index="7" instance=ExtResource("3_4umhc")]
+position = Vector2(680, 480)
+output_left = NodePath("../../Endpoints/Endpoint2")
+output_right = NodePath("../../Endpoints/Endpoint3")
+
+[node name="Endpoints" type="Node2D" parent="." index="7"]
+
+[node name="Endpoint" parent="Endpoints" index="0" instance=ExtResource("4_7ry6i")]
+position = Vector2(384, 608)
+
+[node name="Endpoint2" parent="Endpoints" index="1" instance=ExtResource("4_7ry6i")]
+position = Vector2(576, 608)
+
+[node name="Endpoint3" parent="Endpoints" index="2" instance=ExtResource("4_7ry6i")]
+position = Vector2(768, 608)
+
+[node name="Furny" parent="." index="8" instance=ExtResource("5_vmov0")]
+position = Vector2(228, 394)

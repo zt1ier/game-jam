@@ -11,6 +11,7 @@ var types: Array[String] = [
 	"Explosive",
 ]
 
+var retype_timer: float = 0.0
 
 @onready var endpoints: Node2D = $"../Endpoints"
 
@@ -20,11 +21,14 @@ func _ready() -> void:
 		for endpoint in endpoints.get_children():
 			endpoint_nodes.append(endpoint)
 
-	_set_unique_types()
-	_start_retype_loop()
+	set_unique_types()
 
 
-func _set_unique_types() -> void:
+func _process(delta: float) -> void:
+	retype_timer += delta
+
+
+func set_unique_types() -> void:
 	var shuffled_types := types.duplicate()
 	shuffled_types.shuffle()
 
@@ -34,7 +38,8 @@ func _set_unique_types() -> void:
 			endpoint.set_type(shuffled_types[i])
 
 
-func  _start_retype_loop() -> void:
-	await get_tree().create_timer(retype_interval).timeout
-	_set_unique_types()
-	_start_retype_loop()
+func _on_truffie_resolved() -> void:
+	if retype_timer >= retype_interval:
+		if get_tree().get_nodes_in_group("Truffies").is_empty():
+			set_unique_types()
+			retype_timer = 0.0

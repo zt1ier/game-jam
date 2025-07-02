@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://jdrrtxxekhap"]
 
-[ext_resource type="Script" uid="uid://dsbge467btybr" path="res://scripts/furny.gd" id="1_n1621"]
+[ext_resource type="Script" uid="uid://dsbge467btybr" path="res://scripts/game/furny.gd" id="1_n1621"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifiv6"]
-radius = 40.0
-height = 128.0
+radius = 24.0
+height = 80.0
 
 [node name="Furny" type="CharacterBody2D"]
 motion_mode = 1

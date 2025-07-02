@@ -10,8 +10,12 @@ var type: String = ""
 func set_type(new_type: String) -> void:
 	type = new_type
 
+	if not collision_shape:
+		await get_tree().process_frame
+
 	# placeholders, please change to actual sprites
 	match type:
 		"Normal": collision_shape.debug_color = Color.WHITE
 		"Frozen": collision_shape.debug_color = Color.BLUE
 		"Explosive": collision_shape.debug_color = Color.RED
+		_: print("uh oh")

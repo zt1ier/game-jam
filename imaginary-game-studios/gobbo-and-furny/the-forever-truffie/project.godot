@@ -17,16 +17,13 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 [autoload]
 
 GutMeter="*res://scripts/globals/gut_meter.gd"
+GameState="*res://scripts/globals/game_state.gd"
 
 [display]
 
 window/size/window_width_override=576
 window/size/window_height_override=324
 window/stretch/mode="canvas_items"
-
-[global_group]
-
-GutMeter=""
 
 [input]
 
