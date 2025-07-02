@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dcnve5wnevytu"]
+[gd_scene load_steps=2 format=3 uid="uid://dcnve5wnevytu"]
+
+[ext_resource type="Script" uid="uid://bhr1xcnhvedgf" path="res://scripts/pipe.gd" id="1_8x3ej"]
 
 [node name="Pipe" type="Marker2D"]
+script = ExtResource("1_8x3ej")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8

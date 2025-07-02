@@ -20,7 +20,6 @@ func _ready() -> void:
 	# randomize target output
 	if not target_output:
 		target_output = [output_left, output_right].pick_random()
-	print("%s target_output: %s" % [name, target_output])
 
 
 func _draw() -> void:
@@ -56,7 +55,6 @@ func _change_output() -> void:
 		target_output = output_right
 	elif target_output == output_right:
 		target_output = output_left
-	print("%s target_output: %s" % [name, target_output])
 	queue_redraw()
 
 
