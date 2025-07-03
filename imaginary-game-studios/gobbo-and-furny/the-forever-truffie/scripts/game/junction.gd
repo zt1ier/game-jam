@@ -10,6 +10,9 @@ var target_output: NodePath
 var is_player_nearby: bool = false
 
 
+@onready var color_rect: ColorRect = $ColorRect
+
+
 func _ready() -> void:
 	# connect signals if not already
 	if not is_connected("body_entered", Callable(self, "_on_body_entered")):

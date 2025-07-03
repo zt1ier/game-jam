@@ -15,12 +15,21 @@ class_name Levels extends Node
 @onready var timer: Timer = $Timer
 
 @onready var endpoint_manager: EndpointManager = $EndpointManager
+@onready var dialogue_tree: DialogueTree = $DialogueTree
 @onready var truffies: TruffieSpawner = $Truffies
 
 
 func _ready() -> void:
 	GameState.connect("game_won", Callable(self, "_on_game_won"))
 	GameState.connect("game_lost", Callable(self, "_on_game_lost"))
+
+	GutMeter.dialogue_tree = dialogue_tree
+
+	# level resets
+	if GutMeter.first_digest == false:
+		GutMeter.first_digest = true
+	if GutMeter.first_reject == false:
+		GutMeter.first_reject = true
 
 
 func _process(delta: float) -> void:

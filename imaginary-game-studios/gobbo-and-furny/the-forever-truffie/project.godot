@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Gobbo's Gourmet Gutworks"
+config/name="Truffie Traffic"
 run/main_scene="uid://d2ye3mw5dv752"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
@@ -21,6 +21,8 @@ GameState="*res://scripts/globals/game_state.gd"
 
 [display]
 
+window/size/window_width_override=576
+window/size/window_height_override=324
 window/stretch/mode="canvas_items"
 
 [input]

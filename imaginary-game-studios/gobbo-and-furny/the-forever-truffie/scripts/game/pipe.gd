@@ -2,6 +2,7 @@ class_name Pipe extends Marker2D
 
 
 @export var target: NodePath
+@onready var spawnpoint: Marker2D = $Spawnpoint
 
 
 func _draw() -> void:

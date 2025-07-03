@@ -7,8 +7,8 @@ class_name EndpointManager extends Node2D
 
 var types: Array[String] = [
 	"Normal",
-	"Frozen",
-	"Explosive",
+	"Spicy",
+	"Crunchy",
 ]
 
 var retype_timer: float = 0.0
@@ -29,6 +29,9 @@ func _process(delta: float) -> void:
 
 
 func set_unique_types() -> void:
+	if endpoint_nodes.size() != 3:
+		types.erase("Crunchy")
+
 	var shuffled_types := types.duplicate()
 	shuffled_types.shuffle()
 

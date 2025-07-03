@@ -9,39 +9,56 @@
 
 [node name="LevelOne" instance=ExtResource("1_w53h0")]
 script = ExtResource("2_vsfy4")
+difficulty_lerp = 0.1
+
+[node name="EndpointManager" parent="." index="2"]
+retype_interval = 2.0
+
+[node name="Panel" parent="DialogueTree" index="0"]
+visible = false
 
 [node name="Pipes" type="Node2D" parent="." index="5"]
 
 [node name="Pipe" parent="Pipes" index="0" instance=ExtResource("1_vsfy4")]
-position = Vector2(480, 168)
+position = Vector2(480, 136)
 target = NodePath("../../Junctions/Junction")
 
 [node name="Pipe2" parent="Pipes" index="1" instance=ExtResource("1_vsfy4")]
-position = Vector2(672, 168)
-target = NodePath("../../Junctions/Junction")
+position = Vector2(672, 136)
+target = NodePath("../../Junctions/Junction2")
 
 [node name="Junctions" type="Node2D" parent="." index="6"]
 
 [node name="Junction" parent="Junctions" index="0" instance=ExtResource("2_w53h0")]
-position = Vector2(512, 352)
-output_left = NodePath("../../Endpoints/Endpoint")
+position = Vector2(480, 304)
+output_left = NodePath("../Junction3")
 output_right = NodePath("../Junction2")
 
 [node name="Junction2" parent="Junctions" index="1" instance=ExtResource("2_w53h0")]
-position = Vector2(672, 440)
-output_left = NodePath("../../Endpoints/Endpoint2")
-output_right = NodePath("../../Endpoints/Endpoint3")
+position = Vector2(672, 304)
+output_left = NodePath("../Junction3")
+output_right = NodePath("../Junction4")
+
+[node name="Junction4" parent="Junctions" index="2" instance=ExtResource("2_w53h0")]
+position = Vector2(672, 456)
+output_left = NodePath("../Junction3")
+output_right = NodePath("../../Endpoints/Endpoint2")
+
+[node name="Junction3" parent="Junctions" index="3" instance=ExtResource("2_w53h0")]
+position = Vector2(480, 456)
+output_left = NodePath("../../Endpoints/Endpoint")
+output_right = NodePath("../../Endpoints/Endpoint2")
 
 [node name="Endpoints" type="Node2D" parent="." index="7"]
 
 [node name="Endpoint" parent="Endpoints" index="0" instance=ExtResource("3_623cv")]
-position = Vector2(384, 608)
+position = Vector2(480, 608)
 
 [node name="Endpoint2" parent="Endpoints" index="1" instance=ExtResource("3_623cv")]
-position = Vector2(576, 608)
-
-[node name="Endpoint3" parent="Endpoints" index="2" instance=ExtResource("3_623cv")]
-position = Vector2(768, 608)
+position = Vector2(672, 608)
 
 [node name="Furny" parent="." index="8" instance=ExtResource("6_8ri5e")]
 position = Vector2(320, 392)
+
+[node name="Timer" parent="." index="9"]
+wait_time = 45.0
