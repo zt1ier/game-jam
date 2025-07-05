@@ -13,6 +13,8 @@ func _ready() -> void:
 
 
 func _run_tutorial() -> void:
+	GameState.in_tutorial = true
+
 	timer.paused = true
 	truffie_spawner.pause_spawning()
 
@@ -27,6 +29,8 @@ func _run_tutorial() -> void:
 
 	timer.paused = false
 	truffie_spawner.resume_spawning()
+
+	GameState.in_tutorial = false
 
 
 func _on_game_won() -> void:

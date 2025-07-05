@@ -19,11 +19,20 @@ class_name Levels extends Node
 @onready var truffies: TruffieSpawner = $Truffies
 
 
+@onready var game_over: CanvasLayer = $GameOver
+@onready var explosion: AnimatedSprite2D = $GameOver/Explosion
+@onready var lose_panel: ColorRect = $GameOver/LosePanel
+
+
 func _ready() -> void:
+	if game_over.visible == true:
+		game_over.hide()
+
 	GameState.connect("game_won", Callable(self, "_on_game_won"))
 	GameState.connect("game_lost", Callable(self, "_on_game_lost"))
 
 	GutMeter.dialogue_tree = dialogue_tree
+	GutMeter.refresh()
 
 	# level resets
 	if GutMeter.first_digest == false:
@@ -57,9 +66,35 @@ func _on_timer_timeout() -> void:
 
 
 func _on_game_won() -> void:
-	pass
+	_game_victory()
 
 
 func _on_game_lost() -> void:
-	# change scene to loss
-	print("noooooooo you lose")
+	_game_over()
+
+
+func _game_victory() -> void:
+	dialogue_tree.show_dialogue(GameState.current_level, "won")
+	await dialogue_tree.wait_until_hidden()
+
+	var next_level := int(GameState.current_level) + 1
+	var next_level_scene = "res://scenes/levels/level_%d.tscn" % next_level
+	
+	if ResourceLoader.exists(next_level_scene):
+		get_tree().change_scene_to_file(next_level_scene)
+	else:
+		print("level.gd: no more levels, make a victory scene that shows stats")
+		pass
+
+
+func _game_over() -> void:
+	get_tree().paused = true
+
+	dialogue_tree.show_dialogue(GameState.current_level, "lose")
+	await dialogue_tree.wait_until_hidden()
+
+	explosion.show()
+	explosion.play("default")
+	await explosion.animation_finished
+
+	explosion.hide()

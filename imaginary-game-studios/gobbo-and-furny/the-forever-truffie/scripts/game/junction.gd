@@ -10,7 +10,9 @@ var target_output: NodePath
 var is_player_nearby: bool = false
 
 
-@onready var color_rect: ColorRect = $ColorRect
+@onready var left_marker: Marker2D = $LeftMarker
+@onready var right_marker: Marker2D = $RightMarker
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _ready() -> void:
@@ -48,7 +50,7 @@ func _draw() -> void:
 		draw_line(Vector2.ZERO, to_right, color_right, 3.0)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_player_nearby and Input.is_action_just_pressed("interact"):
 		_change_output()
 
@@ -56,16 +58,18 @@ func _physics_process(delta: float) -> void:
 func _change_output() -> void:
 	if target_output == output_left:
 		target_output = output_right
+		anim.play("output_R")
 	elif target_output == output_right:
 		target_output = output_left
+		anim.play("output_L")
 	queue_redraw()
 
 
-func _on_body_entered(body: Furny) -> void:
+func _on_body_entered(_body: Furny) -> void:
 	is_player_nearby = true
 
 
-func _on_body_exited(body: Furny) -> void:
+func _on_body_exited(_body: Furny) -> void:
 	is_player_nearby = false
 
 

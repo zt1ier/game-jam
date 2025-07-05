@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfebv6s2thy61"]
+[gd_scene load_steps=6 format=3 uid="uid://dfebv6s2thy61"]
 
 [ext_resource type="PackedScene" uid="uid://cgcnorcuqanav" path="res://scenes/level.tscn" id="1_tn2yd"]
 [ext_resource type="PackedScene" uid="uid://dcnve5wnevytu" path="res://scenes/game/pipe.tscn" id="2_dyh5b"]
 [ext_resource type="Script" uid="uid://c1oq8sojc86yr" path="res://scripts/levels/level_two.gd" id="2_ivcj6"]
 [ext_resource type="PackedScene" uid="uid://b78f84jo8hjrm" path="res://scenes/game/junction.tscn" id="3_ivcj6"]
 [ext_resource type="PackedScene" uid="uid://brmey775geq02" path="res://scenes/game/endpoint.tscn" id="4_q0tex"]
-[ext_resource type="PackedScene" uid="uid://jdrrtxxekhap" path="res://scenes/game/furny.tscn" id="5_ivkd0"]
 
 [node name="LevelTwo" instance=ExtResource("1_tn2yd")]
 script = ExtResource("2_ivcj6")
@@ -62,6 +61,3 @@ position = Vector2(576, 608)
 
 [node name="Endpoint3" parent="Endpoints" index="2" instance=ExtResource("4_q0tex")]
 position = Vector2(768, 608)
-
-[node name="Furny" parent="." index="8" instance=ExtResource("5_ivkd0")]
-position = Vector2(960, 392)

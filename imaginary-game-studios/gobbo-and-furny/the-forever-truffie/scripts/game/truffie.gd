@@ -29,14 +29,31 @@ func _ready() -> void:
 
 	if not dialogue_tree.is_displaying:
 		var level = GameState.current_level
+		await get_tree().create_timer(0.5).timeout
 		dialogue_tree.maybe_show_type_dialogue(level, type)
+
+	if GameState.in_tutorial == true:
+		travel_speed = 50
 
 
 func _process(delta: float) -> void:
+	if travel_speed == 50:
+		travel_speed = lerpf(travel_speed, 150, delta * 10)
+
 	if current_target:
-		position = position.move_toward(current_target.global_position, travel_speed * delta)
-		if position.distance_to(current_target.global_position) < 5:
+
+		var target_position: Vector2 = Vector2.ZERO
+		if current_target.has_method("get_target_marker_position"):
+			target_position = current_target.get_target_marker_position()
+		else:
+			target_position = current_target.global_position
+
+		position = position.move_toward(target_position, travel_speed * delta)
+
+		if position.distance_to(target_position) < 5:
 			move_to_next()
+
+	rotation += deg_to_rad(0.75)
 
 
 func _set_truffie_type() -> void:

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctridwqwibo10"]
+[gd_scene load_steps=6 format=3 uid="uid://ctridwqwibo10"]
 
 [ext_resource type="PackedScene" uid="uid://cgcnorcuqanav" path="res://scenes/level.tscn" id="1_466fs"]
 [ext_resource type="Script" uid="uid://ssee0jqy21wi" path="res://scripts/levels/level_three.gd" id="2_4umhc"]
 [ext_resource type="PackedScene" uid="uid://dcnve5wnevytu" path="res://scenes/game/pipe.tscn" id="2_y0l6c"]
 [ext_resource type="PackedScene" uid="uid://b78f84jo8hjrm" path="res://scenes/game/junction.tscn" id="3_4umhc"]
 [ext_resource type="PackedScene" uid="uid://brmey775geq02" path="res://scenes/game/endpoint.tscn" id="4_7ry6i"]
-[ext_resource type="PackedScene" uid="uid://jdrrtxxekhap" path="res://scenes/game/furny.tscn" id="5_vmov0"]
 
 [node name="LevelThree" instance=ExtResource("1_466fs")]
 script = ExtResource("2_4umhc")
@@ -71,8 +70,5 @@ position = Vector2(576, 608)
 [node name="Endpoint3" parent="Endpoints" index="2" instance=ExtResource("4_7ry6i")]
 position = Vector2(768, 608)
 
-[node name="Furny" parent="." index="8" instance=ExtResource("5_vmov0")]
-position = Vector2(228, 394)
-
-[node name="Timer" parent="." index="9"]
+[node name="Timer" parent="." index="8"]
 wait_time = 75.0

@@ -19,6 +19,10 @@ var gobbo_dialogue: Dictionary = {
 				["Eugh! Wrong exit!"],
 			"gut_hint": 
 				["Don’t let that belly meter fill up or we’re toast!"],
+			"win":
+				["Good meal!"],
+			"lose":
+				["...Furny! I'm.."], # explosion.gif
 			"type_normal": 
 				[
 					"Oooh, a classic! The brown truffies are tasty!",
@@ -29,17 +33,28 @@ var gobbo_dialogue: Dictionary = {
 					"Whoo! That one’s spicy!",
 					"Hot stuff! Send it where the red one is.",
 				],
+			"gut_warning": 
+				[
+					"Furny, the pressure’s building!",
+					"I don't feel so good..!",
+					"Pressure's going up...!",
+				],
 		},
 
 
 
 	"2":
 		{
-			"start": ["Rise and shine, Furny. Let’s not mess it up!"],
+			"start":
+				["Rise and shine, Furny. Let’s not mess it up!"],
 			"first_correct": 
 				["Correct exit! You get five big booms!"],
 			"first_wrong": 
 				["Bad call! Wrong color!"],
+			"win":
+				["Delicious!"],
+			"lose":
+				["...Furny! I'm.."], # explosion.gif
 			"type_normal": 
 				[
 					"Nothing beats the classic!",
@@ -69,11 +84,16 @@ var gobbo_dialogue: Dictionary = {
 
 	"3":
 		{
-			"start": ["Oh boy. Four pipes? Whose idea was this?!"],
+			"start":
+				["Oh boy. Four pipes? Whose idea was this?!"],
 			"first_correct": 
 				["Yes! That’s how we keep the gut happy!"],
 			"first_wrong": 
 				["Nope! That one’s not gonna digest right!"],
+			"win":
+				["That was amazing! Thank you, Furny!"],
+			"lose":
+				["...Furny! I'm.."], # explosion.gif
 			"type_normal": 
 				[
 					"Nothing beats the classic!",
@@ -143,7 +163,14 @@ func show_dialogue(level: String, key: String) -> void:
 	is_displaying = true
 
 	var level_dialogue = gobbo_dialogue.get(level, {})
-	var line = level_dialogue.get(key, "")
+	var line = level_dialogue.get(key, [])
+
+	if level_dialogue == {}:
+		print("dialogue_tree.gd: level_dialogue dictionary empty")
+		return
+	elif line == []:
+		print("dialogue_tree.gd: line array/string empty")
+		return
 
 	if typeof(line) == TYPE_ARRAY:
 		label.text = line.pick_random()
