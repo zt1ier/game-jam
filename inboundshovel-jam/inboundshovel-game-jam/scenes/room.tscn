@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=3 uid="uid://fx5hbfmnyxn"]
+
+[ext_resource type="Material" uid="uid://ci3gq2ifkterh" path="res://scenes/furniture/wall_texture.tres" id="1_14vil"]
+[ext_resource type="PackedScene" uid="uid://bwqon6ebnfw4d" path="res://scenes/furniture/monitor.tscn" id="1_36trf"]
+[ext_resource type="PackedScene" uid="uid://bisgmnf6a2kpw" path="res://assets/door/scene.gltf" id="1_jxe34"]
+[ext_resource type="PackedScene" uid="uid://dnbtq0g6fv13w" path="res://assets/desk/scene.gltf" id="2_85yof"]
+[ext_resource type="PackedScene" uid="uid://dkn40wld7o1bf" path="res://assets/bed/scene.gltf" id="3_14vil"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jxe34"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jn645"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_85yof"]
+colors = PackedColorArray(1, 1, 1, 0.490196, 1, 1, 1, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_14vil"]
+gradient = SubResource("Gradient_85yof")
+fill_to = Vector2(1, 1)
+
+[node name="Room" type="Node3D"]
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Wall1" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(0.16, 0, 0, 0, 2.4696, 0, 0, 0, 6.24, -1.969, 1.2, 0.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("1_14vil")
+
+[node name="Wall3" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(3.72529e-09, 0, -3.84909, 0, 2.4696, 0, 0.16, 0, 1.47067e-07, 0.0310001, 1.2, -2.999)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("1_14vil")
+
+[node name="Floor" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-6.99382e-09, 3.95136, 0, -0.16, -1.72719e-07, 0, 0, 0, 6.24, 0.0309999, 0.2, 0.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../..")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-6.99382e-09, 3.95136, 0, -0.16, -1.72719e-07, 0, 0, 0, 6.24, 0.0309999, 2.47915, 0.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../..")
+
+[node name="WindowArea" type="Node3D" parent="Walls"]
+
+[node name="Wall2" type="MeshInstance3D" parent="Walls/WindowArea"]
+transform = Transform3D(0.16, 0, 0, 0, 2.4696, 0, 0, 0, 2.75489, 2.031, 1.2, -2.81992)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = ExtResource("1_14vil")
+
+[node name="Wall3" type="MeshInstance3D" parent="Walls/WindowArea"]
+transform = Transform3D(0.16, 0, 0, 0, 2.4696, 0, 0, 0, 3.75707, 2.031, -0.401032, -0.958734)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = ExtResource("1_14vil")
+
+[node name="Wall4" type="MeshInstance3D" parent="Walls/WindowArea"]
+transform = Transform3D(0.16, 0, 0, 0, 2.4696, 0, 0, 0, 3.75707, 2.031, 3.26349, -0.958734)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = ExtResource("1_14vil")
+
+[node name="Wall5" type="MeshInstance3D" parent="Walls/WindowArea"]
+transform = Transform3D(0.16, 0, 0, 0, 2.4696, 0, 0, 0, 4.75685, 2.031, 1.2, 1.91031)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = ExtResource("1_14vil")
+
+[node name="DoorArea" type="Node3D" parent="Walls"]
+
+[node name="Wall4" type="MeshInstance3D" parent="Walls/DoorArea"]
+transform = Transform3D(3.72529e-09, 0, -1.74701, 0, 2.4696, 0, 0.16, 0, 6.67502e-08, -1.2664, 1.2, 3.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = ExtResource("1_14vil")
+
+[node name="Wall5" type="MeshInstance3D" parent="Walls/DoorArea"]
+transform = Transform3D(3.72529e-09, 0, -1.74701, 0, 2.4696, 0, 0.16, 0, 6.67502e-08, 1.3284, 1.2, 3.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = ExtResource("1_14vil")
+
+[node name="Wall6" type="MeshInstance3D" parent="Walls/DoorArea"]
+transform = Transform3D(3.72529e-09, 0, -2.35072, 0, 2.4696, 0, 0.16, 0, 8.98168e-08, -0.223, 3.16, 3.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = ExtResource("1_14vil")
+
+[node name="BorderOrSomething" type="MeshInstance3D" parent="Walls/DoorArea"]
+transform = Transform3D(-6.99382e-09, 0, 1.2296, 0, 2.4696, 0, -0.16, 0, -5.37476e-08, 0.0871724, 1.2, 3.29542)
+mesh = SubResource("BoxMesh_jxe34")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jn645")
+
+[node name="Door" parent="Walls/DoorArea" instance=ExtResource("1_jxe34")]
+transform = Transform3D(0.577727, 0, 0.553382, 0, 0.8, 0, -0.553382, 0, 0.577727, -0.0684209, 1.11052, 2.71223)
+
+[node name="Furniture" type="Node3D" parent="."]
+
+[node name="Monitor" parent="Furniture" instance=ExtResource("1_36trf")]
+transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 0.715913, 0.911778, -2.52685)
+
+[node name="TurnedOn" type="Node3D" parent="Furniture/Monitor"]
+
+[node name="Sprite3D" type="Sprite3D" parent="Furniture/Monitor/TurnedOn"]
+transform = Transform3D(0.715467, 0, 0, 0, 0.610437, 0, 0, 0, 1, 0.000516117, 0.306071, 0.341895)
+texture = SubResource("GradientTexture2D_14vil")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Furniture/Monitor/TurnedOn"]
+transform = Transform3D(-1.04915, 0, -0.0855371, 0, 1.05263, 0, 0.0855371, 0, -1.04915, -0.125353, 0.368279, 0.256184)
+light_bake_mode = 0
+spot_attenuation = 2.0
+spot_angle = 75.0
+spot_angle_attenuation = 5.65686
+
+[node name="Desk" parent="Furniture" instance=ExtResource("2_85yof")]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0.582176, 0.318197, -2.34226)
+
+[node name="Bed" parent="Furniture" instance=ExtResource("3_14vil")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.12646, 0.432285, -1.59154)

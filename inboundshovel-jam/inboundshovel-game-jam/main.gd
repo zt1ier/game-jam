@@ -1,10 +1,18 @@
 class_name Main extends Node3D
 
 
+@export_group("Camera Angles")
 @export var monitor_view: float = 0.0
-@export var window_view: float = -PI / 1.8
+@export var window_view: float = -PI / 1.65
 @export var room_view: float = -PI
 @export var bed_view: float = PI / 1.7
+
+@export_group("Lazy Hardcoded Variables")
+@export var door_closed_position: Vector3 = Vector3(0.027, 1.111, 3.0)
+@export var door_closed_rotation: Vector3 = Vector3.ZERO
+@export var door_opened_position: Vector3 = Vector3(-0.068, 1.111, 2.712)
+@export var door_opened_rotation: Vector3 = Vector3(0.0, 43.8, 0.0) # degrees, need to turn to radians
+
 
 
 enum LookingAt { MONITOR, WINDOW, ROOM, BED }

@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkpnx6282jod8"]
+[gd_scene load_steps=3 format=3 uid="uid://dkpnx6282jod8"]
 
 [ext_resource type="Script" uid="uid://dmx67codd5nj4" path="res://scripts/manifestation.gd" id="1_wd1q3"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wd1q3"]
+
 [node name="Manifestation" type="Node3D"]
 script = ExtResource("1_wd1q3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5184, 0, 0, 0, 0.504, 0, 0, 0, 0.49, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_wd1q3")

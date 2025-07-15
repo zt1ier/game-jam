@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhsqkags8haud"]
+
+[ext_resource type="PackedScene" uid="uid://dkpnx6282jod8" path="res://scenes/manifestation.tscn" id="1_uhhi8"]
+[ext_resource type="Script" uid="uid://dsnfvcwhliocl" path="res://scripts/manifestations/denial.gd" id="2_auys0"]
+
+[node name="Denial" instance=ExtResource("1_uhhi8")]
+script = ExtResource("2_auys0")
+stage_name = "Denial"

@@ -1,0 +1,1 @@
+class_name Denial extends Manifestation

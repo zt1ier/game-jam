@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwqon6ebnfw4d"]
+
+[ext_resource type="PackedScene" uid="uid://bk1ctrvr3vegk" path="res://assets/monitor/scene.gltf" id="1_g3rll"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_g3rll")]
+
+[node name="FloppyDisk_Black" parent="Sketchfab_model/5354bf2da2354eb2882d2f15fe078b7a_fbx/RootNode" index="0"]
+visible = false
+
+[node name="FloppyDisk_Blue" parent="Sketchfab_model/5354bf2da2354eb2882d2f15fe078b7a_fbx/RootNode" index="1"]
+visible = false
+
+[node name="FloppyDisk_Green" parent="Sketchfab_model/5354bf2da2354eb2882d2f15fe078b7a_fbx/RootNode" index="2"]
+visible = false
+
+[node name="FloppyDisk_Red" parent="Sketchfab_model/5354bf2da2354eb2882d2f15fe078b7a_fbx/RootNode" index="3"]
+visible = false
+
+[node name="RetroComputer_M_RetroComputer_0" parent="Sketchfab_model/5354bf2da2354eb2882d2f15fe078b7a_fbx/RootNode/RetroComputer" index="0"]
+transform = Transform3D(0.973415, 0.229047, 3.73166e-08, -0.229047, 0.973415, -4.3312e-09, -3.73166e-08, -4.33118e-09, 1, -0.958267, -0.0357415, -5.82304e-09)
+
+[node name="RetroKeyboard_M_RetroKeyboardMouse_0" parent="Sketchfab_model/5354bf2da2354eb2882d2f15fe078b7a_fbx/RootNode/RetroKeyboard" index="0"]
+transform = Transform3D(0.994476, -0.104962, -1.71005e-08, 0.104962, 0.994476, -8.99945e-10, 1.71005e-08, -8.99945e-10, 1, 0.135461, 0, 0)
+
+[node name="RetroMonitor_M_RetroMonitor_0" parent="Sketchfab_model/5354bf2da2354eb2882d2f15fe078b7a_fbx/RootNode/RetroMonitor" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.133185, -2.16985e-08)
+
+[node name="RetroMouse" parent="Sketchfab_model/5354bf2da2354eb2882d2f15fe078b7a_fbx/RootNode" index="7"]
+transform = Transform3D(98.799, -15.4521, -2.51746e-06, -3.43105e-15, -1.62921e-05, 100, -15.4521, -98.799, -1.60964e-05, 62.3703, -3.44771e-15, 34.4729)
+
+[node name="RetroMouse_M_RetroKeyboardMouse_0" parent="Sketchfab_model/5354bf2da2354eb2882d2f15fe078b7a_fbx/RootNode/RetroMouse" index="0"]
+transform = Transform3D(0.997095, -0.0761622, -1.24084e-08, 0.0761622, 0.997095, -4.73207e-10, 1.24084e-08, -4.73207e-10, 1, -0.134431, 0, 0)
