@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://mrdgccr5qp07"]
+
+[ext_resource type="Script" uid="uid://b820a7qc1oqip" path="res://main.gd" id="1_ig7tw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 2
+sky = SubResource("Sky_h2yge")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ig7tw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bvp3")
+
+[node name="Room" type="Node3D" parent="."]
+
+[node name="Wall1" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(0.16, 0, 0, 0, 2.4696, 0, 0, 0, 6.24, -1.969, 1.2, 0.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../..")
+
+[node name="Wall2" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(0.16, 0, 0, 0, 2.4696, 0, 0, 0, 6.24, 2.031, 1.2, 0.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../..")
+
+[node name="Wall3" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(3.72529e-09, 0, -3.84909, 0, 2.4696, 0, 0.16, 0, 1.47067e-07, 0.0310001, 1.2, -2.999)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../..")
+
+[node name="Wall4" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(3.72529e-09, 0, -3.84909, 0, 2.4696, 0, 0.16, 0, 1.47067e-07, 0.0310001, 1.2, 3.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../..")
+
+[node name="Floor" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(-6.99382e-09, 3.95136, 0, -0.16, -1.72719e-07, 0, 0, 0, 6.24, 0.0309999, 0.2, 0.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../..")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(-6.99382e-09, 3.95136, 0, -0.16, -1.72719e-07, 0, 0, 0, 6.24, 0.0309999, 2.47915, 0.001)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../..")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.60972)

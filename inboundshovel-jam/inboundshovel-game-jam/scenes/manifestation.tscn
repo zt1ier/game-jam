@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkpnx6282jod8"]
+
+[ext_resource type="Script" uid="uid://dmx67codd5nj4" path="res://scripts/manifestation.gd" id="1_wd1q3"]
+
+[node name="Manifestation" type="Node3D"]
+script = ExtResource("1_wd1q3")
