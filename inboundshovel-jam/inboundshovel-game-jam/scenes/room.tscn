@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://fx5hbfmnyxn"]
+[gd_scene load_steps=13 format=3 uid="uid://fx5hbfmnyxn"]
 
 [ext_resource type="Material" uid="uid://ci3gq2ifkterh" path="res://scenes/furniture/wall_texture.tres" id="1_14vil"]
 [ext_resource type="PackedScene" uid="uid://bwqon6ebnfw4d" path="res://scenes/furniture/monitor.tscn" id="1_36trf"]
 [ext_resource type="PackedScene" uid="uid://bisgmnf6a2kpw" path="res://assets/door/scene.gltf" id="1_jxe34"]
 [ext_resource type="PackedScene" uid="uid://dnbtq0g6fv13w" path="res://assets/desk/scene.gltf" id="2_85yof"]
 [ext_resource type="PackedScene" uid="uid://dkn40wld7o1bf" path="res://assets/bed/scene.gltf" id="3_14vil"]
+[ext_resource type="Script" uid="uid://dhwsvbpcp8bud" path="res://scripts/furniture/monitor.gd" id="4_jn645"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
 
@@ -19,6 +20,9 @@ colors = PackedColorArray(1, 1, 1, 0.490196, 1, 1, 1, 0.784314)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_14vil"]
 gradient = SubResource("Gradient_85yof")
 fill_to = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jxe34"]
+size = Vector3(0.438263, 0.496582, 0.361816)
 
 [node name="Room" type="Node3D"]
 
@@ -105,22 +109,31 @@ transform = Transform3D(0.577727, 0, 0.553382, 0, 0.8, 0, -0.553382, 0, 0.577727
 
 [node name="Monitor" parent="Furniture" instance=ExtResource("1_36trf")]
 transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 0.715913, 0.911778, -2.52685)
+script = ExtResource("4_jn645")
 
-[node name="TurnedOn" type="Node3D" parent="Furniture/Monitor"]
+[node name="TurnedOnVisual" type="Node3D" parent="Furniture/Monitor"]
 
-[node name="Sprite3D" type="Sprite3D" parent="Furniture/Monitor/TurnedOn"]
+[node name="Sprite3D" type="Sprite3D" parent="Furniture/Monitor/TurnedOnVisual"]
 transform = Transform3D(0.715467, 0, 0, 0, 0.610437, 0, 0, 0, 1, 0.000516117, 0.306071, 0.341895)
 texture = SubResource("GradientTexture2D_14vil")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Furniture/Monitor/TurnedOn"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Furniture/Monitor/TurnedOnVisual"]
 transform = Transform3D(-1.04915, 0, -0.0855371, 0, 1.05263, 0, 0.0855371, 0, -1.04915, -0.125353, 0.368279, 0.256184)
 light_bake_mode = 0
 spot_attenuation = 2.0
 spot_angle = 75.0
 spot_angle_attenuation = 5.65686
 
+[node name="TurnOnButton" type="Area3D" parent="Furniture/Monitor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Furniture/Monitor/TurnOnButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000259399, 0.304105, 0.200037)
+shape = SubResource("BoxShape3D_jxe34")
+
 [node name="Desk" parent="Furniture" instance=ExtResource("2_85yof")]
 transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0.582176, 0.318197, -2.34226)
 
 [node name="Bed" parent="Furniture" instance=ExtResource("3_14vil")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.12646, 0.432285, -1.59154)
+
+[connection signal="input_event" from="Furniture/Monitor/TurnOnButton" to="Furniture/Monitor" method="_on_monitor_toggled"]

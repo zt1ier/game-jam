@@ -23,6 +23,12 @@ var can_turn: bool = true
 
 
 @onready var camera: Camera3D = $Camera
+@onready var manifestations: Node3D = $Manifestations
+
+
+func _ready() -> void:
+	GameManager.manifestations = manifestations
+	GameManager.monitor = $Room/Furniture/Monitor
 
 
 func _physics_process(delta: float) -> void:

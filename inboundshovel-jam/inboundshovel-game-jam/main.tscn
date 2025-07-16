@@ -41,5 +41,7 @@ environment = SubResource("Environment_1bvp3")
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.611948, 1.25584, -1.60972)
 
-[node name="Denial" parent="." instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63583, 1.21523, -2.9484)
+[node name="Manifestations" type="Node3D" parent="."]
+
+[node name="Denial" parent="Manifestations" instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670152, 1.34894, -2.75824)

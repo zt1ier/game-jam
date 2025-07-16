@@ -14,6 +14,16 @@ config/name="InboundShovel Game Jam"
 run/main_scene="uid://mrdgccr5qp07"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
+[autoload]
+
+GameManager="*res://scripts/globals/game_manager.gd"
+
+[display]
+
+window/size/window_width_override=576
+window/size/window_height_override=324
+window/stretch/mode="canvas_items"
+
 [input]
 
 turn_back={
