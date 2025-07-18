@@ -24,6 +24,13 @@ func _ready() -> void:
 	get_tree().change_scene_to_packed(MAIN_SCENE)
 
 
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		GameManager.next_level()
+		await get_tree().process_frame
+		get_tree().change_scene_to_packed(MAIN_SCENE)
+
+
 # lazy dev shares lazy code, hilarity ensues
 func _intro_dialogue() -> void:
 	await get_tree().create_timer(1.5).timeout

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://mrdgccr5qp07"]
+[gd_scene load_steps=7 format=3 uid="uid://mrdgccr5qp07"]
 
 [ext_resource type="Script" uid="uid://b820a7qc1oqip" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://fx5hbfmnyxn" path="res://scenes/room.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dhsqkags8haud" path="res://scenes/manifestations/denial.tscn" id="2_h2yge"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
 sky_top_color = Color(5.71553e-08, 0, 0.100857, 1)
@@ -48,7 +49,13 @@ environment = SubResource("Environment_1bvp3")
 
 [node name="Manifestations" type="Node3D" parent="."]
 
+[node name="Denial" parent="Manifestations" instance=ExtResource("2_h2yge")]
+transform = Transform3D(0.138, 0, 0, 0, 0.138, 0, 0, 0, 0.138, 0.615823, 1.261, -2.18704)
+
 [node name="Room" parent="." instance=ExtResource("2_0xm2m")]
+
+[node name="Lamps_02_Emissor_001_0" parent="Room/Furniture/Misc/Lamps_02" index="1"]
+surface_material_override/0 = null
 
 [connection signal="input_event" from="Room/Walls/DoorArea/Door/ClickArea" to="." method="_on_door_toggled"]
 

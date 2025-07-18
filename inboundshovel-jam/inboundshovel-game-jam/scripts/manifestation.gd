@@ -5,7 +5,7 @@ class_name Manifestation extends Node3D
 @export var active_level: int = 1 # level it activates
 
 @export_group("Hunt Parameters")
-@export var hunt_stages: Array[float] = [5.0, 8.0, 10.0] # aggression thresholds, last triggers attack
+@export var hunt_stages: Array[float] = [10.0, 15.0, 25.0] # aggression thresholds, last triggers attack
 @export var hunt_location: int = 0 # player view index it hunts from (matches with Main.LookingAt)
 @export var aggression_level: float = 1.0 # hunt meter increase rate
 @export var aggression_decay_rate: float = 2.0 # hunt meter decrease rate
@@ -18,6 +18,9 @@ var _hunt_meter: float = 0.0
 var _on_cooldown: bool = false
 var _last_stage_index: int = 0
 var _current_stage: int = 0
+
+
+@onready var stage_visual: Sprite3D = $StageVisual
 
 
 func _ready() -> void:
@@ -80,7 +83,7 @@ func _on_hunt_stage(stage_index: int) -> void:
 		2:
 			_stage_two() # stronger signs
 		3:
-			pass # _perform_attack() is handled separately n _evaluate_stage()
+			pass # _perform_attack() is handled separately in _evaluate_stage()
 		
 
 	print("%s reached hunt stage %d" % [stage_name, stage_index])
@@ -134,10 +137,10 @@ func activate() -> void:
 
 	# only activate if current_level matches active_level
 	if GameManager.current_level < active_level:
+		print("Can't activate %s because:" % stage_name)
 		print("manifestation.gd: 'current_level %d' is less than 'active_level %d'" % [GameManager.current_level, active_level])
 		return
 
-	hide()
 	_active = true
 	_hunt_meter = 0.0
 	_last_stage_index = 0

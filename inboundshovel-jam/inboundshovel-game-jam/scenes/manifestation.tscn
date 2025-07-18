@@ -4,3 +4,5 @@
 
 [node name="Manifestation" type="Node3D"]
 script = ExtResource("1_wd1q3")
+
+[node name="StageVisual" type="Sprite3D" parent="."]
