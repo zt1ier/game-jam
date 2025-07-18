@@ -19,11 +19,11 @@ func _tick_behavior(delta: float) -> void:
 	else:
 		# player is NOT watching
 		if GameManager.is_monitor_on():
-			# monitor ON → normal aggression
+			# monitor ON -> normal aggression
 			_hunt_meter += aggression_level * delta
 		else:
-			# monitor OFF → increased aggression
-			_hunt_meter += (aggression_level * 1.5) * delta  # or 2.0, tweak to taste
+			# monitor OFF -> increased aggression
+			_hunt_meter += (aggression_level * 1.5) * delta
 
 
 

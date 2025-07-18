@@ -134,7 +134,7 @@ func activate() -> void:
 
 	# only activate if current_level matches active_level
 	if GameManager.current_level < active_level:
-		print("manifestation.gd: 'current_level' is less than 'active_level'")
+		print("manifestation.gd: 'current_level %d' is less than 'active_level %d'" % [GameManager.current_level, active_level])
 		return
 
 	hide()

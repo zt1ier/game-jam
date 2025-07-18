@@ -1,0 +1,113 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwg43u4phedlo"]
+
+[ext_resource type="PackedScene" uid="uid://udwplikgusrq" path="res://assets/furniture/chair/scene.gltf" id="1_a4hm4"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_a4hm4")]
+
+[node name="Chair_22_Plastic_01_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_22" index="0"]
+visible = false
+
+[node name="Chair_22_Metal_05_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_22" index="1"]
+visible = false
+
+[node name="Chair_21" parent="Sketchfab_model/Chairs_fbx/RootNode" index="1"]
+visible = false
+
+[node name="Chair" parent="Sketchfab_model/Chairs_fbx/RootNode" index="2"]
+visible = false
+
+[node name="Chair_Wood_06_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair" index="0"]
+visible = false
+
+[node name="Chair_Fabric_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair" index="1"]
+visible = false
+
+[node name="Chair_01_Wood_06_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_01" index="0"]
+visible = false
+
+[node name="Chair_01_Fabric_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_01" index="1"]
+visible = false
+
+[node name="Chair_02_Plastic_02_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_02" index="0"]
+visible = false
+
+[node name="Chair_02_Wood_08_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_02" index="1"]
+visible = false
+
+[node name="Chair_03_Wood_04_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_03" index="0"]
+visible = false
+
+[node name="Chair_04_Wood_08_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_04" index="0"]
+visible = false
+
+[node name="Chair_04_Leather_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_04" index="1"]
+visible = false
+
+[node name="Chair_07_Fabric_04_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_07" index="0"]
+visible = false
+
+[node name="Chair_07_Wood_10_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_07" index="1"]
+visible = false
+
+[node name="Chair_05_Wood_08_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_05" index="0"]
+visible = false
+
+[node name="Chair_05_Fabric_02_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_05" index="1"]
+visible = false
+
+[node name="Chair_11_Metal_04_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_11" index="0"]
+visible = false
+
+[node name="Chair_11_Fabric_03_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_11" index="1"]
+visible = false
+
+[node name="Chair_06_Fabric_01_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_06" index="0"]
+visible = false
+
+[node name="Chair_06_Wood_05_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_06" index="1"]
+visible = false
+
+[node name="Chair_10_Plastic_03_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_10" index="0"]
+visible = false
+
+[node name="Chair_10_Leather_01_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_10" index="1"]
+visible = false
+
+[node name="Chair_09" parent="Sketchfab_model/Chairs_fbx/RootNode" index="12"]
+visible = false
+
+[node name="Chair_09_Leather_01_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_09" index="1"]
+visible = false
+
+[node name="Chair_14_Wood_07_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_14" index="0"]
+visible = false
+
+[node name="Chair_16" parent="Sketchfab_model/Chairs_fbx/RootNode" index="14"]
+transform = Transform3D(4.37114e-06, -100, -4.37114e-06, -1.11022e-14, -4.37114e-06, 100, -100, -4.37114e-06, -1.9984e-13, 0.00267327, 28.3869, 7.48043)
+
+[node name="Chair_16_Straw_0" parent="Sketchfab_model/Chairs_fbx/RootNode/Chair_16" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.7647e-23, 0, 7.86658e-23, 1, 0, 0, 0)
+
+[node name="Chair_13" parent="Sketchfab_model/Chairs_fbx/RootNode" index="15"]
+visible = false
+
+[node name="Chair_12" parent="Sketchfab_model/Chairs_fbx/RootNode" index="16"]
+visible = false
+
+[node name="Chair_15" parent="Sketchfab_model/Chairs_fbx/RootNode" index="17"]
+visible = false
+
+[node name="Chair_19" parent="Sketchfab_model/Chairs_fbx/RootNode" index="18"]
+visible = false
+
+[node name="Chair_18" parent="Sketchfab_model/Chairs_fbx/RootNode" index="19"]
+visible = false
+
+[node name="Chair_08" parent="Sketchfab_model/Chairs_fbx/RootNode" index="20"]
+visible = false
+
+[node name="Chair_17" parent="Sketchfab_model/Chairs_fbx/RootNode" index="21"]
+visible = false
+
+[node name="Chair_20" parent="Sketchfab_model/Chairs_fbx/RootNode" index="22"]
+visible = false

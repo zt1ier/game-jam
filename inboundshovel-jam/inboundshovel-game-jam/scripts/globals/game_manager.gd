@@ -9,6 +9,14 @@ const SHAKE_STRENGTH: int = 12
 # external = what others say, usually misguided support
 # internal = what the player thinks and tells themselves, unraveling thoughts (wrapped in BBCode)
 var level_dialogue: Dictionary[int, Dictionary] = {
+	0: { # intro sequence
+		"intro1": "...Honey, it's not your fault.",
+		"intro2": "It's...",
+		"intro3": "It's been a couple days..",
+		"intro4": "..At least eat some food.",
+		"intro5": "...Please.",
+	},
+
 	1: { # denial
 		"external": "They wouldn’t want you to dwell on it.",
 		"internal": "[shake level=15]If I don’t think about it, maybe it didn’t really happen."
@@ -35,7 +43,7 @@ var level_dialogue: Dictionary[int, Dictionary] = {
 	},
 }
 
-var current_level: int = 1
+var current_level: int = 0
 
 var manifestations: Node3D = null
 var dialogue_scene: DialogueScene = null
@@ -56,8 +64,6 @@ func next_level() -> void:
 
 	if current_level < MAX_LEVEL:
 		current_level += 1
-		if dialogue_scene != null:
-			dialogue_scene.update_label()
 
 
 func is_monitor_on() -> bool:

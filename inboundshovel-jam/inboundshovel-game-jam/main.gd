@@ -7,23 +7,20 @@ class_name Main extends Node3D
 @export var room_view: float = -PI
 @export var bed_view: float = PI / 1.7
 
-@export_group("Lazy Hardcoded Variables")
-@export var door_closed_position: Vector3 = Vector3(0.027, 1.111, 3.0)
-@export var door_closed_rotation: Vector3 = Vector3.ZERO
-@export var door_opened_position: Vector3 = Vector3(-0.068, 1.111, 2.712)
-@export var door_opened_rotation: Vector3 = Vector3(0.0, 43.8, 0.0) # degrees, need to turn to radians
-
-
 
 enum LookingAt { MONITOR, WINDOW, ROOM, BED }
 var looking_order: Array[LookingAt] = [LookingAt.MONITOR, LookingAt.WINDOW, LookingAt.ROOM, LookingAt.BED]
 
-var looking_at: LookingAt = LookingAt.MONITOR
+var looking_at: LookingAt = LookingAt.ROOM
 var can_turn: bool = true
+
+var door_open: bool = false
+var curtain_open: bool = false
 
 
 @onready var camera: Camera3D = $Camera
 @onready var manifestations: Node3D = $Manifestations
+@onready var door_anim: AnimationPlayer = $Room/AnimationPlayer
 
 
 func _ready() -> void:
@@ -80,3 +77,12 @@ func _turning_head(target_rotation: float) -> void:
 	while abs(angle_difference(camera.rotation.y, target_rotation)) > 0.01:
 		camera.rotation.y = lerp_angle(camera.rotation.y, target_rotation, 0.3)
 		await get_tree().process_frame
+
+
+func _on_door_toggled(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		door_open = !door_open
+		if door_open:
+			door_anim.play("door_closed")
+		else:
+			door_anim.play("door_opened")

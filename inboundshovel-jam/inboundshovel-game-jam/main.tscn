@@ -1,21 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://mrdgccr5qp07"]
+[gd_scene load_steps=6 format=3 uid="uid://mrdgccr5qp07"]
 
 [ext_resource type="Script" uid="uid://b820a7qc1oqip" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://fx5hbfmnyxn" path="res://scenes/room.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://dhsqkags8haud" path="res://scenes/manifestations/denial.tscn" id="3_h2yge"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
 sky_top_color = Color(5.71553e-08, 0, 0.100857, 1)
 sky_horizon_color = Color(1.12806e-09, 3.76021e-10, 0.025387, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_14vil"]
+[sub_resource type="Sky" id="Sky_h2yge"]
 sky_material = SubResource("ProceduralSkyMaterial_h2yge")
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
 background_mode = 2
 background_energy_multiplier = 0.5
-sky = SubResource("Sky_14vil")
+sky = SubResource("Sky_h2yge")
 ambient_light_source = 2
 ambient_light_color = Color(0, 0, 0.0392157, 1)
 ambient_light_sky_contribution = 0.7
@@ -27,21 +26,30 @@ fog_density = 1.0
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ig7tw")
 
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.611948, 1.25584, -1.60972)
+
 [node name="DimLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4865, 1.48484, -0.880191)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48107, 1.44665, -0.881268)
+light_color = Color(0, 0, 0.0392157, 1)
+omni_range = 4.5
+omni_attenuation = -0.5
+
+[node name="MoonLight" type="SpotLight3D" parent="."]
+transform = Transform3D(-2.53203e-08, -0.527416, 0.849607, -1.57182e-08, 0.849607, 0.527416, -1, 0, -2.98023e-08, 4.70159, 3.13159, -0.957319)
 light_energy = 0.05
 light_bake_mode = 0
-omni_range = 8.0
+spot_range = 11.183
+spot_attenuation = 0.5
+spot_angle = 15.97
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1bvp3")
 
-[node name="Room" parent="." instance=ExtResource("2_0xm2m")]
-
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.611948, 1.25584, -1.60972)
-
 [node name="Manifestations" type="Node3D" parent="."]
 
-[node name="Denial" parent="Manifestations" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670152, 1.34894, -2.75824)
+[node name="Room" parent="." instance=ExtResource("2_0xm2m")]
+
+[connection signal="input_event" from="Room/Walls/DoorArea/Door/ClickArea" to="." method="_on_door_toggled"]
+
+[editable path="Room"]

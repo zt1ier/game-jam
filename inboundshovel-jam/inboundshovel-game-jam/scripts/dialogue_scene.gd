@@ -1,11 +1,12 @@
 class_name DialogueScene extends Control
 
 
+const MAIN_SCENE: PackedScene = preload("res://main.tscn")
+
+
 @export var label_animation_speed: float = 0.05
 @export var punctuation_pauses: Array[String] = [".", ",", "?", "!"]
 
-
-var level_one_finished: bool = true # please remove in final build
 
 var is_animating: bool = false
 
@@ -16,20 +17,54 @@ var is_animating: bool = false
 func _ready() -> void:
 	GameManager.dialogue_scene = self
 
+	await _intro_dialogue()
+	GameManager.next_level() # intro dialogue sequence is level 0
 
-# quick next_level input, please remove in final build
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		if GameManager.current_level == 1 and not level_one_finished:
-			update_label()
-		else:
-			GameManager.next_level()
+	await get_tree().process_frame
+	get_tree().change_scene_to_packed(MAIN_SCENE)
+
+
+# lazy dev shares lazy code, hilarity ensues
+func _intro_dialogue() -> void:
+	await get_tree().create_timer(1.5).timeout
+
+	var intro_1 = GameManager.get_dialogue("intro1") # Honey, it's not your fault
+	label.text = intro_1
+	await animating_characters()
+	await get_tree().create_timer(1.0).timeout
+	await fading_characters()
+	await get_tree().create_timer(1.5).timeout
+
+	var intro_2 = GameManager.get_dialogue("intro2") # It's
+	label.text = intro_2
+	await animating_characters()
+	await get_tree().create_timer(0.7).timeout
+	await fading_characters()
+	await get_tree().create_timer(1.0).timeout
+
+	var intro_3 = GameManager.get_dialogue("intro3") # It's been a couple days
+	label.text = intro_3
+	await animating_characters()
+	await get_tree().create_timer(1.0).timeout
+	await fading_characters()
+	await get_tree().create_timer(1.5).timeout
+
+	var intro_4 = GameManager.get_dialogue("intro4") # At least eat some food
+	label.text = intro_4
+	await animating_characters()
+	await get_tree().create_timer(1.0).timeout
+	await fading_characters()
+	await get_tree().create_timer(1.5).timeout
+
+	var intro_5 = GameManager.get_dialogue("intro5") # Please
+	label.text = intro_5
+	await animating_characters()
+	await get_tree().create_timer(1.0).timeout
+	await fading_characters()
+	await get_tree().create_timer(2.0).timeout
 
 
 func update_label() -> void:
-	if level_one_finished == false:
-		level_one_finished = true
-
 	if is_animating:
 		return
 
@@ -77,7 +112,9 @@ func animating_characters() -> void:
 					await get_tree().create_timer(label_animation_speed * 10.0).timeout
 					continue  # skip to next frame
 
-		await get_tree().process_frame
+		var scene_tree := get_tree()
+		if scene_tree:
+			await scene_tree.process_frame
 
 
 func fading_characters() -> void:
