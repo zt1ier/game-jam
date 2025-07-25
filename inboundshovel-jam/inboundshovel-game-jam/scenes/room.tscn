@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://fx5hbfmnyxn"]
+[gd_scene load_steps=73 format=4 uid="uid://fx5hbfmnyxn"]
 
 [ext_resource type="Material" uid="uid://ci3gq2ifkterh" path="res://scenes/furniture/wall_texture.tres" id="1_14vil"]
 [ext_resource type="PackedScene" uid="uid://bwqon6ebnfw4d" path="res://scenes/furniture/monitor.tscn" id="1_36trf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dkn40wld7o1bf" path="res://assets/furniture/bed/scene.gltf" id="3_14vil"]
 [ext_resource type="Script" uid="uid://dhwsvbpcp8bud" path="res://scripts/furniture/monitor.gd" id="4_jn645"]
 [ext_resource type="PackedScene" uid="uid://c1rt8d2f7owg" path="res://assets/furniture/guitar/scene.gltf" id="8_7dqbv"]
+[ext_resource type="Texture2D" uid="uid://1i5vam0vhmq5" path="res://assets/curtain-texture.jpg" id="9_qtoah"]
 [ext_resource type="PackedScene" uid="uid://cwg43u4phedlo" path="res://scenes/furniture/chair.tscn" id="9_ybpoa"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
@@ -541,6 +542,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hmv0q")
 
+[sub_resource type="BoxMesh" id="BoxMesh_7dqbv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybpoa"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.294118)
+
+[sub_resource type="PrismMesh" id="PrismMesh_7dqbv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eom3m"]
+albedo_color = Color(0.999995, 0.360852, 0.293572, 1)
+albedo_texture = ExtResource("9_qtoah")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ybpoa"]
+
 [sub_resource type="Animation" id="Animation_7dqbv"]
 length = 0.001
 tracks/0/type = "value"
@@ -841,6 +856,66 @@ transform = Transform3D(0.655403, 0, 0, 0, 2.0529, 0, 0, 0, 1.25228, -0.0218786,
 [node name="Object_25" type="MeshInstance3D" parent="Furniture/Misc/Closet/Closet_10"]
 mesh = SubResource("ArrayMesh_0tws2")
 skeleton = NodePath("")
+
+[node name="Window" type="Node3D" parent="Furniture"]
+
+[node name="Frame" type="Node3D" parent="Furniture/Window"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Window/Frame"]
+transform = Transform3D(0.0853905, 0, 0, 0, 1.53385, 0, 0, 0, 0.0795209, 2.0331, 1.4187, -1.41023)
+mesh = SubResource("BoxMesh_7dqbv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Furniture/Window/Frame"]
+transform = Transform3D(0.0853905, 0, 0, 0, 1.53385, 0, 0, 0, 0.0795209, 2.0331, 1.4187, -0.505689)
+mesh = SubResource("BoxMesh_7dqbv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Furniture/Window/Frame"]
+transform = Transform3D(0.0853905, 0, 0, 0, -6.70468e-08, 0.0795209, 0, -1.53385, -3.47597e-09, 2.0331, 0.86709, -0.863451)
+mesh = SubResource("BoxMesh_7dqbv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Furniture/Window/Frame"]
+transform = Transform3D(0.0853905, 0, 0, 0, -6.70468e-08, 0.0795209, 0, -1.53385, -3.47597e-09, 2.0331, 1.99837, -0.863451)
+mesh = SubResource("BoxMesh_7dqbv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Furniture/Window/Frame"]
+transform = Transform3D(0.0853905, 0, 0, 0, 1.53385, 0, 0, 0, 0.0795209, 2.0331, 1.4187, -0.96524)
+mesh = SubResource("BoxMesh_7dqbv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Furniture/Window/Frame"]
+transform = Transform3D(0.0252538, 0, 0, 0, 1.25153, 0, 0, 0, 1.23531, 2.0331, 1.4187, -0.96524)
+mesh = SubResource("BoxMesh_7dqbv")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ybpoa")
+
+[node name="Curtain" type="Node3D" parent="Furniture/Window"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Furniture/Window/Curtain"]
+unique_name_in_owner = true
+transform = Transform3D(0, 0, -0.1, 8.74228e-08, -0.760878, 0, -1, -6.65181e-08, 0, 1.89681, 1.6909, -0.964121)
+mesh = SubResource("PrismMesh_7dqbv")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_eom3m")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Furniture/Window/Curtain"]
+transform = Transform3D(0, 0, -0.0746928, -6.99382e-08, 0.760878, 0, 0.4, 1.33036e-07, 0, 1.89681, 1.05582, -0.964121)
+mesh = SubResource("PrismMesh_7dqbv")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_eom3m")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Furniture/Window/Curtain"]
+transform = Transform3D(0, 0, -0.115205, -1.98994e-08, 0.0690628, 0, 0.113811, 1.20753e-08, 0, 1.89681, 1.33453, -0.964121)
+mesh = SubResource("BoxMesh_ybpoa")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Furniture/Window/Curtain"]
+transform = Transform3D(0, 0, -0.120152, -1.77776e-07, 0.0690628, 0, 1.01676, 1.20753e-08, 0, 1.89361, 2.08342, -0.964121)
+mesh = SubResource("BoxMesh_ybpoa")
+skeleton = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

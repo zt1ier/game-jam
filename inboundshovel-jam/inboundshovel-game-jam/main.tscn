@@ -54,6 +54,9 @@ transform = Transform3D(0.138, 0, 0, 0, 0.138, 0, 0, 0, 0.138, 0.615823, 1.261, 
 
 [node name="Room" parent="." instance=ExtResource("2_0xm2m")]
 
+[node name="Door" parent="Room/Walls/DoorArea" index="4"]
+transform = Transform3D(0.577727, 0, 0.553382, 0, 0.8, 0, -0.553382, 0, 0.577727, -0.0684209, 1.11052, 2.71223)
+
 [node name="Lamps_02_Emissor_001_0" parent="Room/Furniture/Misc/Lamps_02" index="1"]
 surface_material_override/0 = null
 
