@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dudkbpbehh0tc"]
+
+[ext_resource type="Texture2D" uid="uid://mxyyad7wwai0" path="res://assets/wall.png" id="1_bc5iu"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xqgon"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fm4en"]
+load_path = "res://.godot/imported/wall.png-6b1d64fa3ea5498e75707962a9c3b56c.ctex"
+
+[node name="Environment" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 559.0
+offset_bottom = 280.0
+scale = Vector2(2.061, 2.061)
+texture = ExtResource("1_bc5iu")
+stretch_mode = 1
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(576, 576)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_xqgon")
+
+[node name="Background" type="TextureRect" parent="Floor"]
+offset_left = 576.0
+offset_top = 1.0
+offset_right = 849.0
+offset_bottom = 225.0
+rotation = 1.5708
+scale = Vector2(5.143, 5.143)
+texture = SubResource("CompressedTexture2D_fm4en")
+flip_h = true

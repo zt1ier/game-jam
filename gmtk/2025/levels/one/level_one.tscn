@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbhr4t2ek48mh"]
+
+[ext_resource type="PackedScene" uid="uid://dudkbpbehh0tc" path="res://scenes/environment.tscn" id="1_4rtqn"]
+[ext_resource type="PackedScene" uid="uid://dtv5v5yq4qoer" path="res://scenes/player.tscn" id="1_f4ltd"]
+
+[node name="LevelOne" type="Node2D"]
+
+[node name="Environment" parent="." instance=ExtResource("1_4rtqn")]
+
+[node name="Player" parent="." instance=ExtResource("1_f4ltd")]
+position = Vector2(649, 571)
+scale = Vector2(1.5, 1.5)
