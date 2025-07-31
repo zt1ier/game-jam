@@ -1,16 +1,18 @@
 class_name Player extends CharacterBody2D
 
+
 @export var speed: float = 400.0
 @export var jump_height: float = -800.0
 @export var air_control: float = 2.0
-@export var friction: float = 2000.0
+@export var friction: float = 2500.0
 @export var max_fall_speed: float = 980.0
 
-enum State { IDLE, MOVING, JUMPING, FALLING }
+
+enum State { IDLE, WALKING, JUMPING, FALLING }
 
 const STATE_NAMES := {
 	State.IDLE: "IDLE",
-	State.MOVING: "MOVING",
+	State.WALKING: "WALKING",
 	State.JUMPING: "JUMPING",
 	State.FALLING: "FALLING"
 }
@@ -18,36 +20,45 @@ const STATE_NAMES := {
 var current_state: State = State.IDLE
 var direction: float = 0.0
 
+
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_label: Label = $State/StateLabel
 
 
+func _ready() -> void:
+	if not is_in_group("Player"):
+		add_to_group("Player")
+
+
 func _physics_process(delta: float) -> void:
+	if GameManager.intro_sequence:
+		return
+
 	direction = Input.get_axis("move_left", "move_right")
 
 	match current_state:
 		State.IDLE: _idle_state(delta)
-		State.MOVING: _moving_state(delta)
+		State.WALKING: _walking_state(delta)
 		State.JUMPING: _jumping_state(delta)
 		State.FALLING: _falling_state(delta)
 
 	move_and_slide()
 
-	# Handle horizontal flipping
+	# handle horizontal flipping
 	if direction != 0:
 		animation.flip_h = direction < 0
 
-	# Animation and label
-	var state_name = STATE_NAMES[current_state]
+	# visual stuff
+	var state_name = STATE_NAMES.get(current_state, "IDLE")
 	state_label.text = state_name
 	animation.play(state_name)
 
-	# Transition logic
+	# transition logic
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			current_state = State.JUMPING
 		elif abs(direction) > 0.01:
-			current_state = State.MOVING
+			current_state = State.WALKING
 		else:
 			current_state = State.IDLE
 	else:
@@ -58,7 +69,7 @@ func _idle_state(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, 0.0, friction * delta)
 
 
-func _moving_state(delta: float) -> void:
+func _walking_state(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, direction * speed, friction * delta)
 
 

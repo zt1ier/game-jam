@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbhr4t2ek48mh"]
+
+[ext_resource type="Script" uid="uid://cbg24qgrpsvum" path="res://levels/level.gd" id="1_cwqvt"]
+[ext_resource type="PackedScene" uid="uid://dudkbpbehh0tc" path="res://scenes/environment.tscn" id="1_hjsbj"]
+[ext_resource type="PackedScene" uid="uid://dtv5v5yq4qoer" path="res://scenes/player.tscn" id="2_cwqvt"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_cwqvt")
+player = NodePath("Player")
+
+[node name="TiledWallStuff" parent="." instance=ExtResource("1_hjsbj")]
+
+[node name="Player" parent="." instance=ExtResource("2_cwqvt")]
+position = Vector2(208, 552)
+scale = Vector2(1.25, 1.25)
+
+[node name="BlackWallThing" type="Node2D" parent="."]
+
+[node name="Background1" type="ColorRect" parent="BlackWallThing"]
+offset_right = 64.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Background2" type="ColorRect" parent="BlackWallThing"]
+offset_left = 1088.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Background3" type="ColorRect" parent="BlackWallThing"]
+offset_left = 1088.0
+offset_top = 575.0
+offset_right = 1161.0
+offset_bottom = 1599.0
+rotation = 1.57079
+color = Color(0, 0, 0, 1)
+
+[node name="Background4" type="ColorRect" parent="BlackWallThing"]
+offset_left = 1088.0
+offset_right = 1152.0
+offset_bottom = 1024.0
+rotation = 1.57079
+color = Color(0, 0, 0, 1)
+
+[node name="IntroPositions" type="Node2D" parent="."]
+position = Vector2(376, -96)
+
+[node name="Before" type="Marker2D" parent="IntroPositions"]
+position = Vector2(-64, 576)
+
+[node name="After" type="Marker2D" parent="IntroPositions"]
+position = Vector2(176, 576)
