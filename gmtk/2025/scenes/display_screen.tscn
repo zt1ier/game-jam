@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy6m30mr0k6ju"]
+
+[ext_resource type="Script" uid="uid://b0318ioipw2bs" path="res://scripts/display_screen.gd" id="1_acloy"]
+
+[node name="DisplayScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -21.0
+offset_right = 19.0
+offset_bottom = 40.0
+script = ExtResource("1_acloy")
+
+[node name="DropShadow" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 139.0
+offset_right = 722.0
+offset_bottom = 269.0
+color = Color(0, 0, 0, 0.470588)
+
+[node name="Frame" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 144.0
+offset_right = 719.0
+offset_bottom = 264.0
+color = Color(0.857501, 0.857501, 0.857501, 1)
+
+[node name="Highlight" type="ColorRect" parent="Frame"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 238.0
+offset_bottom = 20.0
+color = Color(0.926806, 0.926806, 0.926806, 1)
+
+[node name="Highlight2" type="ColorRect" parent="Frame"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 20.0
+offset_right = 238.0
+offset_bottom = 109.0
+color = Color(0.926806, 0.926806, 0.926806, 1)
+
+[node name="Screen" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 152.0
+offset_right = 709.0
+offset_bottom = 256.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 152.0
+offset_right = 709.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 25
+text = "Stand still on the platform for 10 seconds."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

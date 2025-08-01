@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="Subroutine"
-run/main_scene="uid://cbhr4t2ek48mh"
+run/main_scene="uid://bdf65keewo64f"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://assets/icon.svg"
 
 [autoload]
 
@@ -22,6 +21,10 @@ GameManager="*res://scripts/global/game_manager.gd"
 [display]
 
 window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom_font="uid://bjwb77e6big3j"
 
 [input]
 

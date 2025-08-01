@@ -21,7 +21,8 @@ var current_state: State = State.IDLE
 var direction: float = 0.0
 
 
-@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var main_anim: AnimatedSprite2D = $MainAnimationSprite
+@onready var shadow_anim: AnimatedSprite2D = $DropShadowSprite
 @onready var state_label: Label = $State/StateLabel
 
 
@@ -46,12 +47,14 @@ func _physics_process(delta: float) -> void:
 
 	# handle horizontal flipping
 	if direction != 0:
-		animation.flip_h = direction < 0
+		main_anim.flip_h = direction < 0
+		shadow_anim.flip_h = direction < 0
 
 	# visual stuff
 	var state_name = STATE_NAMES.get(current_state, "IDLE")
 	state_label.text = state_name
-	animation.play(state_name)
+	main_anim.play(state_name)
+	shadow_anim.play(state_name)
 
 	# transition logic
 	if is_on_floor():
