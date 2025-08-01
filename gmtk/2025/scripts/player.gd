@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 
 	# visual stuff
 	var state_name = STATE_NAMES.get(current_state, "IDLE")
-	state_label.text = state_name
+	#state_label.text = state_name
 	main_anim.play(state_name)
 	shadow_anim.play(state_name)
 

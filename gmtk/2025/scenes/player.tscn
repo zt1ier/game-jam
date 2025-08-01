@@ -109,6 +109,7 @@ position = Vector2(-2.5, -40)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="State" type="ColorRect" parent="."]
+visible = false
 offset_left = -40.0
 offset_top = -112.0
 offset_right = 40.0

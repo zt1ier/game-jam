@@ -6,6 +6,7 @@ var levels: Dictionary[int, String] = {
 	1: "res://levels/one/level_one.tscn",
 }
 
+var in_main_menu: bool = true
 var intro_sequence: bool = false
 
 var current_level: int = 1

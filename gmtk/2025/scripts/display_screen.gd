@@ -1,6 +1,8 @@
 class_name DisplayScreen extends Control
 
 
+@export var level: Node2D = null
+
 @export_group("Time")
 @export var time: float = 0.0
 
@@ -23,6 +25,9 @@ const LOOP_HINTS: Array[String] = [
 
 
 func _ready() -> void:
+	if not level:
+		level = get_parent()
+
 	reset_display()
 
 

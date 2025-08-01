@@ -7,6 +7,27 @@ class_name Level extends Node2D
 			player = get_tree().get_first_node_in_group("Player")
 		return player
 
+@export_group("Title Animation")
+@export var float_speed: float = 1.0
+@export var float_strength: float = 5.0
+@export var rotate_strength: float = 1.5
+
+
+var float_timer := 0.0
+var base_position: Vector2 = Vector2.ZERO
+var base_rotation: float = 0.0
+
+
+@onready var menu_nodes_to_hide: Array[Node] = [
+	$Platform,
+	$PlatformDropShadow, 
+	$PlatformAreaDetect ,
+	$DisplayScreen,
+]
+
+@onready var blur_effect: ColorRect = $MenuStuff/BlurEffect
+@onready var menu_title: Label = $MenuStuff/Title
+
 
 @onready var before: Marker2D = $IntroPositions/Before
 @onready var after: Marker2D = $IntroPositions/After
@@ -17,6 +38,14 @@ class_name Level extends Node2D
 func _ready() -> void:
 	GameManager.tree = get_tree()
 
+	base_position = menu_title.global_position
+	base_rotation = menu_title.rotation_degrees
+
+	if GameManager.in_main_menu:
+		await _main_menu(true)
+		return
+
+	_main_menu(false)
 	await _intro_sequence()
 
 
@@ -80,3 +109,37 @@ func _player_turning() -> void:
 
 	player.main_anim.play("IDLE")
 	player.shadow_anim.play("IDLE")
+
+
+func _main_menu(yes: bool) -> void:
+	blur_effect.visible = yes
+
+	for node in menu_nodes_to_hide:
+		node.visible = not yes
+
+		# if node has collision children, disable collision
+		if node.get_child_count() > 0:
+			for child in node.get_children():
+				if child is CollisionShape2D or child is CollisionPolygon2D:
+					child.disabled = yes
+
+	# spawn player in the center of the screen
+	player.global_position.x = get_viewport_rect().size.x / 2
+
+	# animate the menu title
+	while GameManager.in_main_menu:
+		_animate_title()
+		await get_tree().process_frame
+
+
+func _animate_title() -> void:
+	float_timer += get_physics_process_delta_time() * float_speed
+
+	# float animation
+	var offset_x := sin(float_timer) * float_strength
+	var offset_y := cos(float_timer) * float_strength
+	menu_title.position.x = base_position.x + offset_x
+	menu_title.position.y = base_position.y + offset_y
+
+	# slight rotation
+	menu_title.rotation_degrees = base_rotation + sin(float_timer * 0.8) * rotate_strength

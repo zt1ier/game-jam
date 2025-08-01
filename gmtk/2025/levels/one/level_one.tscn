@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdf65keewo64f"]
+[gd_scene load_steps=7 format=3 uid="uid://bdf65keewo64f"]
 
 [ext_resource type="PackedScene" uid="uid://cbhr4t2ek48mh" path="res://levels/level.tscn" id="1_f4ltd"]
 [ext_resource type="Script" uid="uid://cklvlnq4d6x30" path="res://levels/one/level_one.gd" id="2_4rtqn"]
+[ext_resource type="Shader" uid="uid://bh82m10eacnpp" path="res://scripts/shaders/blur.gdshader" id="3_bovpy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4rtqn"]
 size = Vector2(135, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iplyh"]
 size = Vector2(135, 9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iplyh"]
+shader = ExtResource("3_bovpy")
+shader_parameter/lod = 2.0
 
 [node name="LevelOne" instance=ExtResource("1_f4ltd")]
 script = ExtResource("2_4rtqn")
@@ -62,6 +67,37 @@ shape = SubResource("RectangleShape2D_iplyh")
 time = 10.0
 text = "Stand still on the platform for 10 seconds."
 text_display_time = 10.0
+
+[node name="MenuStuff" type="Control" parent="." index="8"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 640.0
+
+[node name="BlurEffect" type="ColorRect" parent="MenuStuff" index="0"]
+material = SubResource("ShaderMaterial_iplyh")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Title" type="Label" parent="MenuStuff" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 144.0
+offset_top = 144.0
+offset_right = -144.0
+offset_bottom = -296.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(432, 100)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/font_size = 200
+text = "ROUTINE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="PlatformAreaDetect" to="." method="_on_platform_area_body_entered"]
 [connection signal="body_exited" from="PlatformAreaDetect" to="." method="_on_platform_area_body_exited"]
