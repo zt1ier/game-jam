@@ -17,12 +17,24 @@ var float_timer := 0.0
 var base_position: Vector2 = Vector2.ZERO
 var base_rotation: float = 0.0
 
+var secret_timer: float = 0.0
 
-@onready var menu_nodes_to_hide: Array[Node] = [
+var level_complete: bool = false
+
+
+@onready var level_nodes: Array[Node] = [
 	$Platform,
 	$PlatformDropShadow, 
 	$PlatformAreaDetect ,
 	$DisplayScreen,
+	$NextLevelDoor
+]
+
+@onready var menu_nodes: Array[Node] = [
+	$MenuStuff/BlurEffect,
+	$MenuStuff/Title,
+	$MenuStuff/StartButton,
+	$MenuStuff/ExitButton,
 ]
 
 @onready var blur_effect: ColorRect = $MenuStuff/BlurEffect
@@ -36,17 +48,25 @@ var base_rotation: float = 0.0
 
 
 func _ready() -> void:
+	set_process(false)
 	GameManager.tree = get_tree()
 
-	base_position = menu_title.global_position
-	base_rotation = menu_title.rotation_degrees
+	if GameManager.current_level == 1:
+		base_position = menu_title.global_position
+		base_rotation = menu_title.rotation_degrees
 
-	if GameManager.in_main_menu:
-		await _main_menu(true)
-		return
+		if GameManager.in_main_menu:
+			await _main_menu(true)
+			return
 
-	_main_menu(false)
+		await _main_menu(false)
+
 	await _intro_sequence()
+	set_process(true)
+
+
+func _process(delta: float) -> void:
+	secret_timer += delta
 
 
 func _intro_sequence() -> void:
@@ -114,14 +134,21 @@ func _player_turning() -> void:
 func _main_menu(yes: bool) -> void:
 	blur_effect.visible = yes
 
-	for node in menu_nodes_to_hide:
+	for node in level_nodes:
 		node.visible = not yes
 
-		# if node has collision children, disable collision
+		# if node has collision or area children, disable
 		if node.get_child_count() > 0:
-			for child in node.get_children():
+			for child in node.get_children(true):
 				if child is CollisionShape2D or child is CollisionPolygon2D:
 					child.disabled = yes
+					#print(child.get_path(), " disabled")
+				if child is Area2D:
+					child.monitoring = not yes
+					child.monitorable = not yes
+
+	for node in menu_nodes:
+		node.visible = yes
 
 	# spawn player in the center of the screen
 	player.global_position.x = get_viewport_rect().size.x / 2
@@ -129,7 +156,9 @@ func _main_menu(yes: bool) -> void:
 	# animate the menu title
 	while GameManager.in_main_menu:
 		_animate_title()
-		await get_tree().process_frame
+
+		if is_instance_valid(get_tree()):
+			await get_tree().process_frame
 
 
 func _animate_title() -> void:
@@ -143,3 +172,7 @@ func _animate_title() -> void:
 
 	# slight rotation
 	menu_title.rotation_degrees = base_rotation + sin(float_timer * 0.8) * rotate_strength
+
+
+func _on_next_level_door_body_entered(player: Player) -> void:
+	GameManager.next_level()

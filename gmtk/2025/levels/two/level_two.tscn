@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt6vcyue3s2wu"]
+
+[ext_resource type="PackedScene" uid="uid://cbhr4t2ek48mh" path="res://levels/level.tscn" id="1_3k2ha"]
+[ext_resource type="Script" uid="uid://ct0f0yabeyxse" path="res://levels/two/level_two.gd" id="2_ev6td"]
+[ext_resource type="Texture2D" uid="uid://bpak416q7yld4" path="res://assets/Button.png" id="3_vuo6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vuo6i"]
+size = Vector2(19.2, 18.3169)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l8pa"]
+atlas = ExtResource("3_vuo6i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxb5u"]
+atlas = ExtResource("3_vuo6i")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sfc3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1l8pa")
+}],
+"loop": true,
+"name": &"DIM",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxb5u")
+}],
+"loop": true,
+"name": &"GLOW",
+"speed": 5.0
+}]
+
+[node name="LevelTwo" instance=ExtResource("1_3k2ha")]
+script = ExtResource("2_ev6td")
+
+[node name="Button" type="Area2D" parent="." index="1"]
+position = Vector2(576, 539.234)
+scale = Vector2(5, 4.7207)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button" index="0"]
+visible = false
+position = Vector2(0, -1.69466)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_vuo6i")
+
+[node name="ButtonDropShadow" type="AnimatedSprite2D" parent="Button" index="1"]
+modulate = Color(0, 0, 0, 0.588235)
+position = Vector2(-1.2, -0.423668)
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_sfc3t")
+animation = &"GLOW"
+
+[node name="ButtonSprite" type="AnimatedSprite2D" parent="Button" index="2"]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_sfc3t")
+animation = &"GLOW"
+
+[node name="Player" parent="." index="3"]
+position = Vector2(480, 576)
+
+[node name="DisplayScreen" parent="." index="6"]
+text = "Press the button only when it glows."
+text_display_time = 10.0
+
+[connection signal="body_entered" from="Button" to="." method="_on_button_body_entered"]
+[connection signal="body_exited" from="Button" to="." method="_on_button_body_exited"]

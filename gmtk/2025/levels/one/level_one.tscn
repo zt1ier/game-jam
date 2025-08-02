@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdf65keewo64f"]
+[gd_scene load_steps=8 format=3 uid="uid://bdf65keewo64f"]
 
 [ext_resource type="PackedScene" uid="uid://cbhr4t2ek48mh" path="res://levels/level.tscn" id="1_f4ltd"]
 [ext_resource type="Script" uid="uid://cklvlnq4d6x30" path="res://levels/one/level_one.gd" id="2_4rtqn"]
@@ -13,6 +13,8 @@ size = Vector2(135, 9)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iplyh"]
 shader = ExtResource("3_bovpy")
 shader_parameter/lod = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bovpy"]
 
 [node name="LevelOne" instance=ExtResource("1_f4ltd")]
 script = ExtResource("2_4rtqn")
@@ -68,7 +70,7 @@ time = 10.0
 text = "Stand still on the platform for 10 seconds."
 text_display_time = 10.0
 
-[node name="MenuStuff" type="Control" parent="." index="8"]
+[node name="MenuStuff" type="Control" parent="." index="9"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -92,12 +94,55 @@ offset_bottom = -296.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(432, 100)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/shadow_offset_x = -7
+theme_override_constants/shadow_offset_y = 7
 theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 20
 theme_override_font_sizes/font_size = 200
 text = "ROUTINE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="StartButton" type="Button" parent="MenuStuff" index="2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 290.0
+offset_top = 385.0
+offset_right = -289.0
+offset_bottom = -201.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(432, 100)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 11
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bovpy")
+text = "BEGIN EVALUATION"
+flat = true
+
+[node name="ExitButton" type="Button" parent="MenuStuff" index="3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 281.0
+offset_top = 449.0
+offset_right = -280.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(432, 100)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 11
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bovpy")
+text = "EXIT PROGRAM"
+flat = true
+
 [connection signal="body_entered" from="PlatformAreaDetect" to="." method="_on_platform_area_body_entered"]
 [connection signal="body_exited" from="PlatformAreaDetect" to="." method="_on_platform_area_body_exited"]
+[connection signal="pressed" from="MenuStuff/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuStuff/ExitButton" to="." method="_on_exit_button_pressed"]

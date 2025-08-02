@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtv5v5yq4qoer"]
+[gd_scene load_steps=17 format=3 uid="uid://dtv5v5yq4qoer"]
 
 [ext_resource type="Script" uid="uid://dkqecjqx7wklr" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bu6u7aiiorwx5" path="res://assets/player/player-jump-fall.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://b7smojlvj1umf" path="res://assets/player/player-idle.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dsl3fgn1hpod4" path="res://assets/player/player-walk.png" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://bukimfkuxbnp3" path="res://assets/player/player_interact.png" id="4_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("2_dqkch")
@@ -15,6 +16,10 @@ region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_g2els")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
+atlas = ExtResource("4_qlg0r")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
@@ -60,6 +65,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}],
+"loop": true,
+"name": &"INTERACTING",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_y4r1p")
 }],
 "loop": true,
@@ -95,13 +117,13 @@ modulate = Color(0, 0, 0, 0.588235)
 position = Vector2(-5, -41.5)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_sweqy")
-animation = &"IDLE"
+animation = &"INTERACTING"
 
 [node name="MainAnimationSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_sweqy")
-animation = &"IDLE"
+animation = &"INTERACTING"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
