@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Routine"
+config/name="Rooutine"
 run/main_scene="uid://bdf65keewo64f"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
