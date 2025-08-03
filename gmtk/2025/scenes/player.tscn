@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dtv5v5yq4qoer"]
+[gd_scene load_steps=18 format=3 uid="uid://dtv5v5yq4qoer"]
 
 [ext_resource type="Script" uid="uid://dkqecjqx7wklr" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bu6u7aiiorwx5" path="res://assets/player/player-jump-fall.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://b7smojlvj1umf" path="res://assets/player/player-idle.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dsl3fgn1hpod4" path="res://assets/player/player-walk.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://bukimfkuxbnp3" path="res://assets/player/player_interact.png" id="4_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://csxxmhgdoif1r" path="res://assets/levels/four/sword-held.png" id="6_tuyoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("2_dqkch")
@@ -123,7 +124,7 @@ animation = &"INTERACTING"
 position = Vector2(0, -40)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_sweqy")
-animation = &"INTERACTING"
+animation = &"WALKING"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, -40)
@@ -144,3 +145,15 @@ offset_bottom = 24.0
 text = "State"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SwordShadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.588235)
+position = Vector2(-36, -52)
+rotation = 3.14159
+scale = Vector2(2.844, -2.844)
+texture = ExtResource("6_tuyoq")
+
+[node name="SwordMain" type="Sprite2D" parent="."]
+position = Vector2(-34, -51)
+scale = Vector2(-2.844, 2.844)
+texture = ExtResource("6_tuyoq")

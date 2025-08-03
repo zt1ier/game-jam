@@ -1,9 +1,131 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbs3yectw5c07"]
+[gd_scene load_steps=24 format=3 uid="uid://bbs3yectw5c07"]
 
 [ext_resource type="PackedScene" uid="uid://cbhr4t2ek48mh" path="res://levels/level.tscn" id="1_buq55"]
 [ext_resource type="Script" uid="uid://dk8mb62gqv51y" path="res://levels/end_screen.gd" id="2_8mn2e"]
+[ext_resource type="Texture2D" uid="uid://dvuv02rbw3ccv" path="res://assets/levels/four/dog-cuter.png" id="3_ek5ha"]
 [ext_resource type="Shader" uid="uid://bh82m10eacnpp" path="res://scripts/shaders/blur.gdshader" id="3_lwpct"]
 [ext_resource type="Texture2D" uid="uid://dyuhb5iqv80rr" path="res://assets/gmtk-2025-logo.png" id="4_py7gb"]
+[ext_resource type="Texture2D" uid="uid://dnbebevnmbie4" path="res://assets/levels/four/dog-cute.png" id="4_wobxa"]
+[ext_resource type="Texture2D" uid="uid://dybt0c72xp6f2" path="res://assets/levels/four/heart.png" id="5_3s41g"]
+[ext_resource type="AudioStream" uid="uid://csh6nt8b0rksm" path="res://assets/audio/dog-bark.mp3" id="6_b176d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w66if"]
+atlas = ExtResource("3_ek5ha")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpq1t"]
+atlas = ExtResource("3_ek5ha")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2ccv"]
+atlas = ExtResource("3_ek5ha")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4p6l"]
+atlas = ExtResource("3_ek5ha")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcus6"]
+atlas = ExtResource("4_wobxa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc7xx"]
+atlas = ExtResource("4_wobxa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekftr"]
+atlas = ExtResource("4_wobxa")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w17hn"]
+atlas = ExtResource("4_wobxa")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3syf"]
+atlas = ExtResource("4_wobxa")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urucq"]
+atlas = ExtResource("4_wobxa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud1dv"]
+atlas = ExtResource("4_wobxa")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oawr"]
+atlas = ExtResource("4_wobxa")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_crr22"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w66if")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpq1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2ccv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4p6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2ccv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpq1t")
+}],
+"loop": true,
+"name": &"LOVE",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcus6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc7xx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekftr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w17hn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3syf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc7xx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urucq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud1dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3syf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oawr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekftr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud1dv")
+}],
+"loop": true,
+"name": &"WAG",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8eqi"]
+size = Vector2(80, 17.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lwpct"]
 shader = ExtResource("3_lwpct")
@@ -22,10 +144,44 @@ monitorable = false
 [node name="CollisionShape2D" parent="NextLevelDoor" index="1"]
 disabled = true
 
-[node name="DisplayScreen" parent="." index="5"]
+[node name="Dog" type="Node2D" parent="." index="2"]
+
+[node name="DogShadow" type="AnimatedSprite2D" parent="Dog" index="0"]
+modulate = Color(0, 0, 0, 0.588235)
+position = Vector2(790, 535)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_crr22")
+animation = &"LOVE"
+
+[node name="DogMain" type="AnimatedSprite2D" parent="Dog" index="1"]
+position = Vector2(794, 536)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_crr22")
+animation = &"LOVE"
+
+[node name="Heart" type="Sprite2D" parent="Dog" index="2"]
+visible = false
+position = Vector2(783.812, 486.813)
+scale = Vector2(5.07, 5.07)
+texture = ExtResource("5_3s41g")
+
+[node name="InteractableArea" type="Area2D" parent="Dog" index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dog/InteractableArea" index="0"]
+position = Vector2(790, 566.75)
+shape = SubResource("RectangleShape2D_i8eqi")
+
+[node name="DogBark" type="AudioStreamPlayer2D" parent="Dog" index="4"]
+stream = ExtResource("6_b176d")
+volume_db = 5.0
+
+[node name="Player" parent="." index="3"]
+position = Vector2(648, 568)
+
+[node name="DisplayScreen" parent="." index="6"]
 visible = false
 
-[node name="EndScreenStuff" type="Control" parent="." index="6"]
+[node name="EndScreenStuff" type="Control" parent="." index="7"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -50,10 +206,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(432, 100)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
-theme_override_constants/shadow_offset_x = -6
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 18
-theme_override_constants/shadow_outline_size = 3
+theme_override_constants/outline_size = 13
 theme_override_font_sizes/font_size = 50
 text = "Level 1:
 level 2:
@@ -83,36 +236,20 @@ theme_override_font_sizes/font_size = 70
 text = "Times"
 vertical_alignment = 1
 
-[node name="Thanks" type="Label" parent="EndScreenStuff" index="2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 152.0
-offset_top = 448.0
-offset_right = 963.0
-offset_bottom = 472.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(432, 100)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
-theme_override_constants/shadow_offset_x = -6
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 18
-theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 70
-text = "Thank you for playing!"
-vertical_alignment = 1
+[node name="GMTK" type="Sprite2D" parent="EndScreenStuff" index="2"]
+position = Vector2(835, 271)
+scale = Vector2(0.577257, 0.577257)
+texture = ExtResource("4_py7gb")
 
-[node name="What" type="Label" parent="EndScreenStuff/Thanks" index="0"]
+[node name="What" type="Label" parent="EndScreenStuff" index="3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 538.0
-offset_top = 48.0
-offset_right = -2.0
-offset_bottom = 48.0
+offset_left = 902.0
+offset_top = 525.0
+offset_right = 1033.0
+offset_bottom = 525.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(432, 100)
@@ -123,25 +260,23 @@ text = "bad game design
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="What2" type="Label" parent="EndScreenStuff/Thanks" index="1"]
+[node name="Credits" type="Label" parent="EndScreenStuff" index="4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = 48.0
-offset_right = -232.0
-offset_bottom = 48.0
+offset_left = 80.0
+offset_top = 525.0
+offset_right = 478.0
+offset_bottom = 525.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(432, 100)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 20
-text = "Music: Eric Matyas
-sfx: sfxr"
+text = "Music: Eric Matyas (soundimage.org)
+sfx: sfxr (sfxr), dragon-studio (pixabay)"
 vertical_alignment = 1
 
-[node name="GMTK" type="Sprite2D" parent="EndScreenStuff" index="3"]
-position = Vector2(835, 271)
-scale = Vector2(0.577257, 0.577257)
-texture = ExtResource("4_py7gb")
+[connection signal="body_entered" from="Dog/InteractableArea" to="." method="_on_dog_area_entered"]
+[connection signal="body_exited" from="Dog/InteractableArea" to="." method="_on_dog_area_exited"]

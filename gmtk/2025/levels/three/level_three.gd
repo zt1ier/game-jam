@@ -5,7 +5,7 @@ class_name LevelThree extends Level
 
 
 var completed_timer: float = 0.0
-var completed_threshold: float = 3.0
+var completed_threshold: float = 2.0
 var complete: bool = false
 
 var jar_active: bool = false
@@ -139,7 +139,7 @@ func _get_spread_interval_for_level(level: int) -> float:
 		1: return 1.5
 		2: return 2.5
 		3: return 4.0
-		_: return 6.0  # slowest spread at dirtiest
+		_: return 5.0  # slowest spread at dirtiest
 
 
 func _on_jar_body_entered(_body: Player) -> void:

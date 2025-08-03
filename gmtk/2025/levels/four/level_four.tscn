@@ -1,7 +1,208 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwb07bvji1tov"]
+[gd_scene load_steps=23 format=3 uid="uid://bwb07bvji1tov"]
 
 [ext_resource type="PackedScene" uid="uid://cbhr4t2ek48mh" path="res://levels/level.tscn" id="1_2ocw0"]
 [ext_resource type="Script" uid="uid://btmyy1h8mxh13" path="res://levels/four/level_four.gd" id="2_8kkil"]
+[ext_resource type="Texture2D" uid="uid://dvuv02rbw3ccv" path="res://assets/levels/four/dog-cuter.png" id="3_dc7xx"]
+[ext_resource type="Texture2D" uid="uid://dnbebevnmbie4" path="res://assets/levels/four/dog-cute.png" id="3_em3bh"]
+[ext_resource type="Texture2D" uid="uid://cfkh37o8bygcb" path="res://assets/levels/four/sword-ground.png" id="4_kcus6"]
+[ext_resource type="Texture2D" uid="uid://dybt0c72xp6f2" path="res://assets/levels/four/heart.png" id="5_ud1dv"]
+[ext_resource type="AudioStream" uid="uid://csh6nt8b0rksm" path="res://assets/audio/dog-bark.mp3" id="6_ud1dv"]
+[ext_resource type="AudioStream" uid="uid://b2xr1m7jb4hq1" path="res://assets/audio/dog-cry.mp3" id="7_p3syf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w66if"]
+atlas = ExtResource("3_dc7xx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpq1t"]
+atlas = ExtResource("3_dc7xx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2ccv"]
+atlas = ExtResource("3_dc7xx")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4p6l"]
+atlas = ExtResource("3_dc7xx")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcus6"]
+atlas = ExtResource("3_em3bh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc7xx"]
+atlas = ExtResource("3_em3bh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekftr"]
+atlas = ExtResource("3_em3bh")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w17hn"]
+atlas = ExtResource("3_em3bh")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3syf"]
+atlas = ExtResource("3_em3bh")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urucq"]
+atlas = ExtResource("3_em3bh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud1dv"]
+atlas = ExtResource("3_em3bh")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oawr"]
+atlas = ExtResource("3_em3bh")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w66if"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w66if")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpq1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2ccv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4p6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2ccv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpq1t")
+}],
+"loop": true,
+"name": &"LOVE",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcus6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc7xx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekftr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w17hn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3syf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc7xx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urucq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud1dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3syf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oawr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekftr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud1dv")
+}],
+"loop": true,
+"name": &"WAG",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc7xx"]
+size = Vector2(80, 17.5)
 
 [node name="LevelFour" instance=ExtResource("1_2ocw0")]
 script = ExtResource("2_8kkil")
+dog_cooldown = 2.0
+
+[node name="Dog" type="Node2D" parent="." index="2"]
+
+[node name="DogShadow" type="AnimatedSprite2D" parent="Dog" index="0"]
+modulate = Color(0, 0, 0, 0.588235)
+position = Vector2(790, 535)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_w66if")
+animation = &"LOVE"
+
+[node name="DogMain" type="AnimatedSprite2D" parent="Dog" index="1"]
+position = Vector2(794, 536)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_w66if")
+animation = &"LOVE"
+frame_progress = 0.740131
+
+[node name="Heart" type="Sprite2D" parent="Dog" index="2"]
+visible = false
+position = Vector2(783.812, 486.813)
+scale = Vector2(5.07, 5.07)
+texture = ExtResource("5_ud1dv")
+
+[node name="InteractableArea" type="Area2D" parent="Dog" index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dog/InteractableArea" index="0"]
+position = Vector2(790, 566.75)
+shape = SubResource("RectangleShape2D_dc7xx")
+
+[node name="DogBark" type="AudioStreamPlayer2D" parent="Dog" index="4"]
+stream = ExtResource("6_ud1dv")
+volume_db = 5.0
+
+[node name="DogCry" type="AudioStreamPlayer2D" parent="Dog" index="5"]
+stream = ExtResource("7_p3syf")
+volume_db = 10.0
+
+[node name="Sword" type="Node2D" parent="." index="3"]
+
+[node name="SwordShadow" type="Sprite2D" parent="Sword" index="0"]
+modulate = Color(0, 0, 0, 0.588235)
+position = Vector2(932, 533)
+scale = Vector2(5.2422, 5.2422)
+texture = ExtResource("4_kcus6")
+
+[node name="SwordMain" type="Sprite2D" parent="Sword" index="1"]
+position = Vector2(936, 534)
+scale = Vector2(5.2422, 5.2422)
+texture = ExtResource("4_kcus6")
+
+[node name="InteractableArea" type="Area2D" parent="Sword" index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/InteractableArea" index="0"]
+position = Vector2(790, 566.75)
+shape = SubResource("RectangleShape2D_dc7xx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sword/InteractableArea" index="1"]
+position = Vector2(934, 566.75)
+shape = SubResource("RectangleShape2D_dc7xx")
+
+[node name="Player" parent="." index="4"]
+position = Vector2(260, 575)
+
+[node name="DisplayScreen" parent="." index="7"]
+prompt = "Pet the dog."
+
+[node name="BlackScreen" type="ColorRect" parent="." index="8"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0.0705882, 1)
+
+[connection signal="body_entered" from="Dog/InteractableArea" to="." method="_on_dog_area_entered"]
+[connection signal="body_exited" from="Dog/InteractableArea" to="." method="_on_dog_area_exited"]
+[connection signal="body_entered" from="Sword/InteractableArea" to="." method="on_sword_area_entered"]
+[connection signal="body_exited" from="Sword/InteractableArea" to="." method="_on_sword_area_exited"]

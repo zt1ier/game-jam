@@ -48,6 +48,7 @@ var level_complete: bool = false
 
 
 func _ready() -> void:
+	player.sword(false)
 	set_process(false)
 	GameManager.tree = get_tree()
 

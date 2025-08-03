@@ -48,7 +48,7 @@ func start_glow_timer() -> void:
 	if glow_interval == 0.0:
 		glow_interval = 5.0
 	else:
-		glow_interval = randf_range(3.0, 10.0)
+		glow_interval = randf_range(3.0, 5.0)
 
 	await get_tree().create_timer(glow_interval).timeout
 

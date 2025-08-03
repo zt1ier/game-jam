@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dudkbpbehh0tc" path="res://scenes/environment.tscn" id="1_hjsbj"]
 [ext_resource type="PackedScene" uid="uid://dtv5v5yq4qoer" path="res://scenes/player.tscn" id="2_cwqvt"]
 [ext_resource type="PackedScene" uid="uid://cy6m30mr0k6ju" path="res://scenes/display_screen.tscn" id="4_safpt"]
-[ext_resource type="Texture2D" uid="uid://dwt2dduhdobxd" path="res://assets/arrow.png" id="5_safpt"]
+[ext_resource type="Texture2D" uid="uid://dwt2dduhdobxd" path="res://assets/levels/arrow.png" id="5_safpt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_safpt"]
 size = Vector2(3.00244, 25.25)

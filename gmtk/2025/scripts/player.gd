@@ -29,6 +29,10 @@ var interacting: bool = false
 @onready var state_label: Label = $State/StateLabel
 
 
+@onready var sword_shadow: Sprite2D = $SwordShadow
+@onready var sword_main: Sprite2D = $SwordMain
+
+
 func _ready() -> void:
 	if not is_in_group("Player"):
 		add_to_group("Player")
@@ -120,3 +124,16 @@ func _interacting_state() -> void:
 	# I could have player stop moving, but I don't want to
 	# if timed right, player will moonwalk forwards (maybe even backwards? haven't tried)
 	#velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+
+
+func sword(equipped: bool) -> void:
+	if equipped:
+		sword_main.show()
+		sword_shadow.show()
+		sword_main.position.x = -sword_main.position.x
+		sword_shadow.position.x = -sword_shadow.position.x
+		sword_main.flip_h = true
+		sword_shadow.flip_h = true
+	else:
+		sword_main.hide()
+		sword_shadow.hide()

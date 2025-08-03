@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cbhr4t2ek48mh" path="res://levels/level.tscn" id="1_3k2ha"]
 [ext_resource type="Script" uid="uid://ct0f0yabeyxse" path="res://levels/two/level_two.gd" id="2_vuo6i"]
-[ext_resource type="Texture2D" uid="uid://bpak416q7yld4" path="res://assets/button.png" id="3_vuo6i"]
+[ext_resource type="Texture2D" uid="uid://bpak416q7yld4" path="res://assets/levels/two/button.png" id="3_vuo6i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vuo6i"]
 size = Vector2(19.2, 18.3169)
