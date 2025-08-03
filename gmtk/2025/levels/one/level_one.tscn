@@ -8,7 +8,7 @@
 size = Vector2(135, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iplyh"]
-size = Vector2(135, 9)
+size = Vector2(182, 168)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iplyh"]
 shader = ExtResource("3_bovpy")
@@ -25,6 +25,9 @@ offset_top = 530.0
 offset_right = 641.0
 offset_bottom = 576.0
 color = Color(0, 0, 0, 0.67451)
+
+[node name="Player" parent="." index="3"]
+position = Vector2(185, 568)
 
 [node name="Platform" type="StaticBody2D" parent="." index="5"]
 position = Vector2(-21, 0)
@@ -62,13 +65,11 @@ shape = SubResource("RectangleShape2D_4rtqn")
 position = Vector2(-21, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformAreaDetect" index="0"]
-position = Vector2(599.5, 533.5)
+position = Vector2(597, 356)
 shape = SubResource("RectangleShape2D_iplyh")
 
-[node name="DisplayScreen" parent="." index="7"]
-time = 10.0
-text = "Stand still on the platform for 10 seconds."
-text_display_time = 10.0
+[node name="DisplayScreen" parent="." index="8"]
+prompt = "Stay on the platform."
 
 [node name="MenuStuff" type="Control" parent="." index="9"]
 layout_mode = 3
@@ -82,7 +83,138 @@ layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="Title" type="Label" parent="MenuStuff" index="1"]
+[node name="What" type="Control" parent="MenuStuff" index="1"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GrayRect" type="ColorRect" parent="MenuStuff/What" index="0"]
+offset_left = 392.0
+offset_top = 305.0
+offset_right = 394.0
+offset_bottom = 306.0
+color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[node name="GrayRect2" type="ColorRect" parent="MenuStuff/What" index="1"]
+offset_left = 394.0
+offset_top = 305.0
+offset_right = 396.0
+offset_bottom = 306.0
+color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[node name="GrayRect3" type="ColorRect" parent="MenuStuff/What" index="2"]
+offset_left = 393.0
+offset_top = 304.0
+offset_right = 395.0
+offset_bottom = 305.0
+color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[node name="GrayRect4" type="ColorRect" parent="MenuStuff/What" index="3"]
+offset_left = 393.0
+offset_top = 304.0
+offset_right = 395.0
+offset_bottom = 305.0
+color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[node name="GrayRect5" type="ColorRect" parent="MenuStuff/What" index="4"]
+offset_left = 392.0
+offset_top = 304.0
+offset_right = 393.0
+offset_bottom = 305.0
+color = Color(0.448, 0.448, 0.448, 0.95)
+
+[node name="GrayRect6" type="ColorRect" parent="MenuStuff/What" index="5"]
+offset_left = 395.0
+offset_top = 304.0
+offset_right = 396.0
+offset_bottom = 305.0
+color = Color(0.448, 0.448, 0.448, 0.95)
+
+[node name="GrayRect7" type="ColorRect" parent="MenuStuff/What" index="6"]
+offset_left = 398.0
+offset_top = 305.0
+offset_right = 399.0
+offset_bottom = 306.0
+color = Color(0.716, 0.716, 0.716, 1)
+
+[node name="GrayRect8" type="ColorRect" parent="MenuStuff/What" index="7"]
+offset_left = 393.0
+offset_top = 301.0
+offset_right = 394.0
+offset_bottom = 302.0
+color = Color(0.716, 0.716, 0.716, 1)
+
+[node name="GrayRect9" type="ColorRect" parent="MenuStuff/What" index="8"]
+offset_left = 394.0
+offset_top = 301.0
+offset_right = 395.0
+offset_bottom = 302.0
+color = Color(0.716, 0.716, 0.716, 1)
+
+[node name="GrayRect10" type="ColorRect" parent="MenuStuff/What" index="9"]
+offset_left = 394.0
+offset_top = 302.0
+offset_right = 395.0
+offset_bottom = 303.0
+color = Color(0.574328, 0.574328, 0.574328, 1)
+
+[node name="GrayRect11" type="ColorRect" parent="MenuStuff/What" index="10"]
+offset_left = 393.0
+offset_top = 302.0
+offset_right = 394.0
+offset_bottom = 303.0
+color = Color(0.574328, 0.574328, 0.574328, 1)
+
+[node name="GrayRect12" type="ColorRect" parent="MenuStuff/What" index="11"]
+offset_left = 397.0
+offset_top = 305.0
+offset_right = 398.0
+offset_bottom = 306.0
+color = Color(0.574328, 0.574328, 0.574328, 1)
+
+[node name="GrayRect13" type="ColorRect" parent="MenuStuff/What" index="12"]
+offset_left = 390.0
+offset_top = 305.0
+offset_right = 391.0
+offset_bottom = 306.0
+color = Color(0.574328, 0.574328, 0.574328, 1)
+
+[node name="GrayRect14" type="ColorRect" parent="MenuStuff/What" index="13"]
+offset_left = 391.0
+offset_top = 305.0
+offset_right = 392.0
+offset_bottom = 306.0
+color = Color(0.391818, 0.391819, 0.391819, 1)
+
+[node name="GrayRect15" type="ColorRect" parent="MenuStuff/What" index="14"]
+offset_left = 396.0
+offset_top = 305.0
+offset_right = 397.0
+offset_bottom = 306.0
+color = Color(0.391818, 0.391819, 0.391819, 1)
+
+[node name="GrayRect16" type="ColorRect" parent="MenuStuff/What" index="15"]
+offset_left = 394.0
+offset_top = 303.0
+offset_right = 395.0
+offset_bottom = 304.0
+color = Color(0.391818, 0.391819, 0.391819, 1)
+
+[node name="GrayRect17" type="ColorRect" parent="MenuStuff/What" index="16"]
+offset_left = 393.0
+offset_top = 303.0
+offset_right = 394.0
+offset_bottom = 304.0
+color = Color(0.391818, 0.391819, 0.391819, 1)
+
+[node name="GrayRect18" type="ColorRect" parent="MenuStuff/What" index="17"]
+offset_left = 390.0
+offset_top = 299.0
+offset_right = 399.0
+offset_bottom = 301.0
+color = Color(0.326679, 0.326679, 0.32668, 1)
+
+[node name="Title" type="Label" parent="MenuStuff" index="2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,7 +236,30 @@ text = "ROUTINE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="MenuStuff" index="2"]
+[node name="BlackRect" type="ColorRect" parent="MenuStuff/Title" index="0"]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 65.0
+offset_right = 262.0
+offset_bottom = 155.0
+color = Color(0, 0, 0, 1)
+
+[node name="BlackRect2" type="ColorRect" parent="MenuStuff/Title" index="1"]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 149.0
+offset_right = 272.0
+offset_bottom = 155.0
+color = Color(0, 0, 0, 1)
+
+[node name="WhiteRect" type="ColorRect" parent="MenuStuff/Title" index="2"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 70.0
+offset_right = 280.0
+offset_bottom = 150.0
+
+[node name="StartButton" type="Button" parent="MenuStuff" index="3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,7 +278,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_bovpy")
 text = "BEGIN EVALUATION"
 flat = true
 
-[node name="ExitButton" type="Button" parent="MenuStuff" index="3"]
+[node name="ExitButton" type="Button" parent="MenuStuff" index="4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

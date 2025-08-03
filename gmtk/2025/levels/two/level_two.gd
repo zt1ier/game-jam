@@ -11,11 +11,13 @@ var glowing: bool = false
 
 
 @onready var button: AnimatedSprite2D = $Button/ButtonSprite
+@onready var shadow: AnimatedSprite2D = $Button/ButtonDropShadow
 
 
 func _ready() -> void:
 	super()
 	button.play("DIM")
+	shadow.play("DIM")
 	start_glow_timer()
 
 
@@ -38,14 +40,21 @@ func _physics_process(delta: float) -> void:
 func _button_pressed() -> void:
 	glowing = false
 	button.play("DIM")
+	shadow.play("DIM")
 	start_glow_timer()
 
 
 func start_glow_timer() -> void:
-	glow_interval = randf_range(3.0, 10.0)
+	if glow_interval == 0.0:
+		glow_interval = 5.0
+	else:
+		glow_interval = randf_range(3.0, 10.0)
+
 	await get_tree().create_timer(glow_interval).timeout
-	glowing = true
+
 	button.play("GLOW")
+	shadow.play("GLOW")
+	glowing = true
 
 
 func _on_button_body_entered(_body: Player) -> void:

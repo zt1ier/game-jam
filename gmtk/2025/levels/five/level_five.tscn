@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ixqnkgaib3bl"]
+
+[ext_resource type="PackedScene" uid="uid://cbhr4t2ek48mh" path="res://levels/level.tscn" id="1_qmu0j"]
+[ext_resource type="Script" uid="uid://bu47b53mt0ur7" path="res://levels/five/level_five.gd" id="2_i3l20"]
+
+[node name="LevelFive" instance=ExtResource("1_qmu0j")]
+script = ExtResource("2_i3l20")
+
+[node name="DisplayScreen" parent="." index="5"]
+prompt = "Wait for further instructions."

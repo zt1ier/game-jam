@@ -10,14 +10,8 @@ class_name DisplayScreen extends Control
 		return arrow_completed
 
 
-@export_group("Time")
-@export var time: float = 0.0
+@export_multiline var prompt: String = ""
 
-@export_group("Text")
-@export_multiline var text: String = ""
-@export var text_display_time: float = 5.0
-
-var hint_index: int = 0
 
 const LOOP_HINTS: Array[String] = [
 	"Try again.",
@@ -47,6 +41,8 @@ var float_speed: float = 3.0
 var float_strength: float = 5.0
 var base_arrow_x: float = 0.0
 
+var hint_index: int = 0
+
 
 @onready var label: Label = $Label
 @onready var screen: ColorRect = $Screen
@@ -65,24 +61,7 @@ func _ready() -> void:
 
 
 func reset_display() -> void:
-	display_text(text)
-	if time == 0.0:
-		return
-
-	await get_tree().create_timer(text_display_time).timeout
-
-	if time != 0.0:
-		display_time(time)
-
-
-func display_time(t: float) -> void:
-	label.add_theme_font_size_override("font_size", 70)
-
-	var total_seconds := int(t)
-	#@warning_ignore("integer_division")   # what
-	var minutes := total_seconds / 60.0   # man i just put .0 and the warning is gone
-	var seconds := total_seconds % 60
-	label.text = "%02d:%02d" % [minutes, seconds]
+	display_text(prompt)
 
 
 func display_text(t: String) -> void:
@@ -96,6 +75,8 @@ func correct() -> void:
 
 	GameManager.level_times[GameManager.current_level] = level.secret_timer
 
+	print(GameManager.get_times())
+
 	if not label.text == "":
 		label.text = ""
 
@@ -105,7 +86,21 @@ func correct() -> void:
 
 	await get_tree().create_timer(2.0).timeout
 
-	arrow_completed.show()
+	enable_next_level_door()
+
+
+func enable_next_level_door() -> void:
+	# this is so bad I'm picking up crumbs rn
+	# I'm sorry
+	if get_tree().current_scene.name == "LevelFive":
+		arrow_completed.hide()
+	else:
+		arrow_completed.show()
+
+	for child in next_level_door.get_children():
+		if child is CollisionShape2D or child is CollisionPolygon2D:
+			child.disabled = false
+		next_level_door.monitoring = true
 
 
 func incorrect(text: String) -> void:

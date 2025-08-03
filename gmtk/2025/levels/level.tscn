@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dwt2dduhdobxd" path="res://assets/arrow.png" id="5_safpt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_safpt"]
-size = Vector2(25.125, 25.25)
+size = Vector2(3.00244, 25.25)
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_cwqvt")
@@ -25,7 +25,7 @@ scale = Vector2(3.35587, 3.18656)
 texture = ExtResource("5_safpt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevelDoor"]
-position = Vector2(1074.44, 563.625)
+position = Vector2(1085.44, 563.625)
 shape = SubResource("RectangleShape2D_safpt")
 
 [node name="Player" parent="." instance=ExtResource("2_cwqvt")]

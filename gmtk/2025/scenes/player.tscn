@@ -126,7 +126,6 @@ sprite_frames = SubResource("SpriteFrames_sweqy")
 animation = &"INTERACTING"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-2.5, -40)
 shape = SubResource("RectangleShape2D_onrkg")
 
