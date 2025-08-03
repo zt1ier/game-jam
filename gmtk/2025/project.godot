@@ -17,9 +17,12 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 [autoload]
 
 GameManager="*res://scripts/global/game_manager.gd"
+AudioManager="*res://scripts/global/audio_manager.gd"
 
 [display]
 
+window/size/window_width_override=576
+window/size/window_height_override=324
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://bpr8b8wa2uiw0"
 

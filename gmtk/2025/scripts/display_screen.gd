@@ -48,6 +48,9 @@ var hint_index: int = 0
 @onready var screen: ColorRect = $Screen
 @onready var next_level_door: Area2D = $"../NextLevelDoor"
 
+@onready var correct_sfx: AudioStreamPlayer = $CorrectSFX
+@onready var incorrect_sfx: AudioStreamPlayer = $IncorrectSFX
+
 
 func _ready() -> void:
 	if not level:
@@ -83,6 +86,7 @@ func correct() -> void:
 	await get_tree().create_timer(1.75).timeout
 
 	screen.color = Color.GREEN
+	correct_sfx.play()
 
 	await get_tree().create_timer(2.0).timeout
 
@@ -114,6 +118,7 @@ func incorrect(text: String) -> void:
 		text = hint
 
 	display_text(text)
+	incorrect_sfx.play()
 
 	screen.color = Color("550000")
 

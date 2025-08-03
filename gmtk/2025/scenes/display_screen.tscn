@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy6m30mr0k6ju"]
+[gd_scene load_steps=4 format=3 uid="uid://cy6m30mr0k6ju"]
 
 [ext_resource type="Script" uid="uid://b0318ioipw2bs" path="res://scripts/display_screen.gd" id="1_acloy"]
+[ext_resource type="AudioStream" uid="uid://dqafmf8ay0m56" path="res://assets/audio/pickupCoin.wav" id="2_3vkqy"]
+[ext_resource type="AudioStream" uid="uid://bo8u8ghbyb877" path="res://assets/audio/tone.wav" id="3_llnq3"]
 
 [node name="DisplayScreen" type="Control"]
 layout_mode = 3
@@ -61,3 +63,9 @@ text = "Do a backflip."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="CorrectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3vkqy")
+
+[node name="IncorrectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_llnq3")

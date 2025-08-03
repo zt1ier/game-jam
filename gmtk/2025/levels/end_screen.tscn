@@ -1,0 +1,147 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbs3yectw5c07"]
+
+[ext_resource type="PackedScene" uid="uid://cbhr4t2ek48mh" path="res://levels/level.tscn" id="1_buq55"]
+[ext_resource type="Script" uid="uid://dk8mb62gqv51y" path="res://levels/end_screen.gd" id="2_8mn2e"]
+[ext_resource type="Shader" uid="uid://bh82m10eacnpp" path="res://scripts/shaders/blur.gdshader" id="3_lwpct"]
+[ext_resource type="Texture2D" uid="uid://dyuhb5iqv80rr" path="res://assets/gmtk-2025-logo.png" id="4_py7gb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwpct"]
+shader = ExtResource("3_lwpct")
+shader_parameter/lod = 2.0
+
+[node name="EndScreen" instance=ExtResource("1_buq55")]
+script = ExtResource("2_8mn2e")
+gmtk_float_speed = 2.0
+gmtk_float_strength = 5.0
+
+[node name="NextLevelDoor" parent="." index="1"]
+visible = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="NextLevelDoor" index="1"]
+disabled = true
+
+[node name="DisplayScreen" parent="." index="5"]
+visible = false
+
+[node name="EndScreenStuff" type="Control" parent="." index="6"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlurEffect" type="ColorRect" parent="EndScreenStuff" index="0"]
+material = SubResource("ShaderMaterial_lwpct")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TimesLabel" type="Label" parent="EndScreenStuff" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 136.0
+offset_top = 184.0
+offset_right = 1112.0
+offset_bottom = 386.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(432, 100)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/shadow_offset_x = -6
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 50
+text = "Level 1:
+level 2:
+level 3:
+level 4:
+level 5:"
+vertical_alignment = 1
+
+[node name="TimesLabelTitle" type="Label" parent="EndScreenStuff/TimesLabel" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -183.0
+offset_right = 172.0
+offset_bottom = -159.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(432, 100)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/shadow_offset_x = -6
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 70
+text = "Times"
+vertical_alignment = 1
+
+[node name="Thanks" type="Label" parent="EndScreenStuff" index="2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 152.0
+offset_top = 448.0
+offset_right = 963.0
+offset_bottom = 472.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(432, 100)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/shadow_offset_x = -6
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 70
+text = "Thank you for playing!"
+vertical_alignment = 1
+
+[node name="What" type="Label" parent="EndScreenStuff/Thanks" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = 48.0
+offset_right = -2.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(432, 100)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "bad game design
+- zt1ier"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="What2" type="Label" parent="EndScreenStuff/Thanks" index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 48.0
+offset_right = -232.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(432, 100)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "Music: Eric Matyas
+sfx: sfxr"
+vertical_alignment = 1
+
+[node name="GMTK" type="Sprite2D" parent="EndScreenStuff" index="3"]
+position = Vector2(835, 271)
+scale = Vector2(0.577257, 0.577257)
+texture = ExtResource("4_py7gb")

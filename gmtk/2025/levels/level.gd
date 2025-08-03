@@ -51,7 +51,7 @@ func _ready() -> void:
 	set_process(false)
 	GameManager.tree = get_tree()
 
-	if get_tree().current_scene.name == "LevelOne":
+	if get_tree().current_scene.name in [ "LevelOne", "EndScreen" ] :
 		base_position = menu_title.global_position
 		base_rotation = menu_title.rotation_degrees
 

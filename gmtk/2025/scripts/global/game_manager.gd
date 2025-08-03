@@ -5,10 +5,10 @@ extends Node
 var levels: Dictionary[int, String] = {
 	1: "res://levels/one/level_one.tscn",
 	2: "res://levels/two/level_two.tscn", 
-	3: "res://levels/three/level_three.tscn",   # not yet
-	4: "res://levels/four/level_four.tscn",   # not yet
+	3: "res://levels/three/level_three.tscn",
+	4: "res://levels/four/level_four.tscn",
 	5: "res://levels/five/level_five.tscn",
-	6: "",   # end screen
+	6: "res://levels/end_screen.tscn",   # end screen
 }
 
 var level_times: Dictionary[int, float] = {

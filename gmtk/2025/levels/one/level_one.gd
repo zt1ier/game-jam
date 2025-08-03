@@ -4,6 +4,12 @@ class_name LevelOne extends Level
 @onready var menu_buttons: Array[Button] = [ $MenuStuff/StartButton, $MenuStuff/ExitButton ]
 
 
+func _ready() -> void:
+	AudioManager.start_button = $MenuStuff/StartButton
+	AudioManager.connect_start_button()
+	super()
+
+
 func _physics_process(delta: float) -> void:
 	for button in menu_buttons:
 		if button.visible:

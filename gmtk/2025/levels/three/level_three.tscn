@@ -1,5 +1,103 @@
-[gd_scene load_steps=2 format=3 uid="uid://2b43o7jqf1r8"]
+[gd_scene load_steps=13 format=3 uid="uid://2b43o7jqf1r8"]
 
 [ext_resource type="PackedScene" uid="uid://cbhr4t2ek48mh" path="res://levels/level.tscn" id="1_lkgbd"]
+[ext_resource type="Script" uid="uid://ctarqoqrbgi70" path="res://levels/three/level_three.gd" id="2_fthi8"]
+[ext_resource type="Texture2D" uid="uid://dx71ipkhy4yl0" path="res://assets/corrupted-jar.png" id="3_fthi8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocuxo"]
+size = Vector2(19.2, 18.3169)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enrc7"]
+atlas = ExtResource("3_fthi8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocuxo"]
+atlas = ExtResource("3_fthi8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbsyc"]
+atlas = ExtResource("3_fthi8")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uht2n"]
+atlas = ExtResource("3_fthi8")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1vct"]
+atlas = ExtResource("3_fthi8")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bbsyc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enrc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocuxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbsyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uht2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1vct")
+}],
+"loop": true,
+"name": &"CORRUPTION",
+"speed": 0.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fthi8"]
+bg_color = Color(0.662745, 0.662745, 0.662745, 0.309804)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enrc7"]
+bg_color = Color(0.0679692, 0.288238, 0.46831, 1)
 
 [node name="LevelThree" instance=ExtResource("1_lkgbd")]
+script = ExtResource("2_fthi8")
+dirt_level = 3
+
+[node name="Jar" type="Area2D" parent="." index="2"]
+position = Vector2(576, 539.234)
+scale = Vector2(5, 4.7207)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jar" index="0"]
+position = Vector2(0, -1.69466)
+shape = SubResource("RectangleShape2D_ocuxo")
+
+[node name="Shadow" type="AnimatedSprite2D" parent="Jar" index="1"]
+modulate = Color(0, 0, 0, 0.588235)
+position = Vector2(-1.2, -0.423668)
+sprite_frames = SubResource("SpriteFrames_bbsyc")
+animation = &"CORRUPTION"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Jar" index="2"]
+sprite_frames = SubResource("SpriteFrames_bbsyc")
+animation = &"CORRUPTION"
+frame_progress = 0.0395359
+
+[node name="IntroPositions" parent="." index="5"]
+visible = false
+
+[node name="DisplayScreen" parent="." index="6"]
+prompt = "Clean the jar."
+
+[node name="JarCamera" type="Camera2D" parent="." index="7"]
+position = Vector2(576, 539)
+zoom = Vector2(3, 3)
+
+[node name="ScrubBar" type="ProgressBar" parent="JarCamera" index="0"]
+offset_left = -64.0
+offset_top = 54.0
+offset_right = 64.0
+offset_bottom = 73.0
+theme_override_styles/background = SubResource("StyleBoxFlat_fthi8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_enrc7")
+value = 50.0
+show_percentage = false
+
+[connection signal="body_entered" from="Jar" to="." method="_on_jar_body_entered"]
+[connection signal="body_exited" from="Jar" to="." method="_on_jar_body_exited"]
