@@ -27,7 +27,7 @@ const LOOP_HINTS: Array[String] = [
 	"In the first one?",
 	"Thanks!",
 	"Okay, fine. In the next one.",
-	"The key is disobedience. Please.",
+	"Disobedience! Please!",
 	"No way.",
 	"No more.",
 	"I wanna go home.",
