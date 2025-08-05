@@ -176,4 +176,6 @@ func _animate_title() -> void:
 
 
 func _on_next_level_door_body_entered(player: Player) -> void:
+	if get_tree().current_scene.name == "LevelFive":
+		GameManager.level_times[GameManager.current_level] = secret_timer
 	GameManager.next_level()
